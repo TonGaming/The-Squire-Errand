@@ -39402,6 +39402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1539303726}
   - component: {fileID: 1539303727}
+  - component: {fileID: 1539303728}
   m_Layer: 9
   m_Name: Ladder Camera
   m_TagString: Untagged
@@ -39464,6 +39465,23 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 461471060}
+--- !u!114 &1539303728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539303725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ConfineMode: 0
+  m_BoundingVolume: {fileID: 0}
+  m_BoundingShape2D: {fileID: 266678075}
+  m_ConfineScreenEdges: 1
+  m_Damping: 0
 --- !u!1 &1600780944
 GameObject:
   m_ObjectHideFlags: 0
@@ -56617,6 +56635,7 @@ GameObject:
   - component: {fileID: 2041594300}
   - component: {fileID: 2041594302}
   - component: {fileID: 2041594301}
+  - component: {fileID: 2041594303}
   m_Layer: 9
   m_Name: Run Camera
   m_TagString: Untagged
@@ -56687,6 +56706,23 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041594299}
   m_Enabled: 1
+--- !u!114 &2041594303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041594299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ConfineMode: 0
+  m_BoundingVolume: {fileID: 0}
+  m_BoundingShape2D: {fileID: 266678075}
+  m_ConfineScreenEdges: 1
+  m_Damping: 0
 --- !u!1 &2073961852
 GameObject:
   m_ObjectHideFlags: 0
