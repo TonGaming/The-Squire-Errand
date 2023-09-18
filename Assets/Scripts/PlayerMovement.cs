@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         FlipSprite();
         groundCheck();
         ClimbLadder();
-        Debug.Log("Y velocity: " + moveInput.y * climbSpeed);
+        //Debug.Log("Y velocity: " + moveInput.y * climbSpeed);
     }
 
     void OnMove(InputValue value) // Luôn phải tuân thủ tên Hàm là Pascal Case
@@ -111,10 +111,12 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             if (Mathf.Abs(myRigidbody2D.velocity.x) >= Mathf.Epsilon)
             {
                 myAnimator.SetBool("isRunning", true);
+                myAnimator.SetBool("isIdling", false);
             }
             else // còn nếu không(đứng im) thì cho đứng im = cách tắt animation running đi 
             {
                 myAnimator.SetBool("isRunning", false);
+                myAnimator.SetBool("isIdling", true);
             }
 
         }
