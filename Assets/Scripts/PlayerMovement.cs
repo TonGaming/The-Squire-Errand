@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     Animator myAnimator;
 
     // Khai báo biến Collider2D
+    CircleCollider2D myCircleCollider2D;
     CapsuleCollider2D myCapsuleCollider2D;
 
     // Khai báo biến gravity scale của Ember
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         myRigidbody2D.gravityScale = baseGravity;
         myAnimator = GetComponent<Animator>();
         myCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        myCircleCollider2D = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
@@ -69,7 +71,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
 
     void groundCheck()
     {
-        if (myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (myCircleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             isGrounded = true;
             // chạy animation landing sau đó mới sang animation action
@@ -78,7 +80,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             
 
         }
-        else if (!myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground", "Ladder")))
+        else if (!myCircleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground", "Ladder")))
         {
             isClimbable = false;
             isGrounded = false;

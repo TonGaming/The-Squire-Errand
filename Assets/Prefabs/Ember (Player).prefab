@@ -11,11 +11,12 @@ GameObject:
   - component: {fileID: 8150544943994868331}
   - component: {fileID: 2778710399939238865}
   - component: {fileID: 7452815151662193064}
+  - component: {fileID: 2787027625780897761}
   - component: {fileID: 3413546477762374542}
   - component: {fileID: 6255532009062243166}
   - component: {fileID: 6330318200546482195}
   - component: {fileID: 385468339481505968}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ember (Player)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,8 +111,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!70 &3413546477762374542
-CapsuleCollider2D:
+--- !u!58 &2787027625780897761
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -142,8 +143,43 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.024660349, y: 0}
-  m_Size: {x: 0.6328349, y: 1}
+  m_Offset: {x: -0.025032759, y: -0.20032531}
+  serializedVersion: 2
+  m_Radius: 0.30421883
+--- !u!70 &3413546477762374542
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5166253313191871775}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: b2c23b2cb6b97d943989a54de3b95147, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.024660349, y: -0.061433554}
+  m_Size: {x: 0.6328349, y: 0.8771329}
   m_Direction: 0
 --- !u!50 &6255532009062243166
 Rigidbody2D:
@@ -215,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  climbSpeed: 5
-  jumpForce: 9
+  climbSpeed: 3
+  jumpForce: 10
   footstepsSound: {fileID: 0}
   baseGravity: 2

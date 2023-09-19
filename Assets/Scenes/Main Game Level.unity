@@ -56976,7 +56976,7 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 3
       m_TileSpriteIndex: 3
-      m_TileMatrixIndex: 11
+      m_TileMatrixIndex: 4
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
@@ -57146,7 +57146,7 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 3
       m_TileSpriteIndex: 3
-      m_TileMatrixIndex: 11
+      m_TileMatrixIndex: 18
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
@@ -57286,7 +57286,7 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 11
       m_TileSpriteIndex: 11
-      m_TileMatrixIndex: 2
+      m_TileMatrixIndex: 15
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
@@ -57436,7 +57436,7 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 3
       m_TileSpriteIndex: 3
-      m_TileMatrixIndex: 0
+      m_TileMatrixIndex: 20
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
@@ -57526,7 +57526,7 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 3
       m_TileSpriteIndex: 3
-      m_TileMatrixIndex: 11
+      m_TileMatrixIndex: 18
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
@@ -57566,7 +57566,7 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 3
       m_TileSpriteIndex: 3
-      m_TileMatrixIndex: 11
+      m_TileMatrixIndex: 21
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
@@ -57786,7 +57786,7 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 2
       m_TileSpriteIndex: 2
-      m_TileMatrixIndex: 8
+      m_TileMatrixIndex: 19
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
@@ -57857,7 +57857,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -1239790021, guid: f3c72f30f62566a46b29a8e0b132bc0e, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 19
+  - m_RefCount: 18
     m_Data:
       e00: 1
       e01: 0
@@ -57893,7 +57893,7 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 5
+  - m_RefCount: 4
     m_Data:
       e00: 1
       e01: 0
@@ -57929,23 +57929,23 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 0
+  - m_RefCount: 1
     m_Data:
-      e00: -6.1973156e+35
-      e01: NaN
-      e02: 5.012236e+21
+      e00: -1
+      e01: 0
+      e02: 0
       e03: 0
-      e10: 2.83e-43
-      e11: 1.4e-44
-      e12: 4.5905e-41
-      e13: 0
-      e20: 3.7532e-41
+      e10: -0
+      e11: 1
+      e12: 0
+      e13: 0.492
+      e20: -0
       e21: 0
-      e22: -6.1973093e+35
+      e22: 1
       e23: 0
       e30: 0
-      e31: 7.34684e-40
-      e32: 2.83e-43
+      e31: 0
+      e32: 0
       e33: 1
   - m_RefCount: 2
     m_Data:
@@ -58001,7 +58001,7 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 17
+  - m_RefCount: 16
     m_Data:
       e00: 1
       e01: 0
@@ -58055,7 +58055,7 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 12
+  - m_RefCount: 8
     m_Data:
       e00: 1
       e01: 0
@@ -58127,7 +58127,7 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data:
       e00: -1
       e01: 0
@@ -58181,6 +58181,78 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
+  - m_RefCount: 2
+    m_Data:
+      e00: 1
+      e01: -0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: -1
+      e12: 0
+      e13: 0.492
+      e20: 0
+      e21: -0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - m_RefCount: 1
+    m_Data:
+      e00: -1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: -0
+      e11: 1
+      e12: 0
+      e13: -0.214
+      e20: -0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - m_RefCount: 1
+    m_Data:
+      e00: 1
+      e01: -0
+      e02: -0.00000008742278
+      e03: 0
+      e10: -0
+      e11: -1
+      e12: 0
+      e13: 0
+      e20: -0.00000008742278
+      e21: -0
+      e22: -1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  - m_RefCount: 1
+    m_Data:
+      e00: -1
+      e01: -0.00000008742278
+      e02: -0.00000008742278
+      e03: 0
+      e10: 0.00000008742278
+      e11: -1
+      e12: 0
+      e13: 0.492
+      e20: 0.00000008742278
+      e21: 7.642742e-15
+      e22: -1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
   m_TileColorArray:
   - m_RefCount: 84
     m_Data: {r: 1, g: 1, b: 1, a: 1}
@@ -58218,7 +58290,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 385468339481505968, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: jumpForce
-      value: 9.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 385468339481505968, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: climbSpeed
@@ -58229,9 +58301,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 19398067}
     - target: {fileID: 3413546477762374542, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8771329
+      objectReference: {fileID: 0}
+    - target: {fileID: 3413546477762374542, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: b2c23b2cb6b97d943989a54de3b95147, type: 2}
+    - target: {fileID: 3413546477762374542, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.061433554
+      objectReference: {fileID: 0}
     - target: {fileID: 5166253313191871775, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_Name
       value: Ember (Player)
@@ -58241,8 +58321,16 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6255532009062243166, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6255532009062243166, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_Material
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6255532009062243166, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
+      propertyPath: m_UseAutoMass
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8150544943994868331, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_LocalPosition.x
