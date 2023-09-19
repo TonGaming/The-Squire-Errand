@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2521253171911535770}
   - component: {fileID: 6221104864204860183}
   - component: {fileID: 2193417642166598694}
+  - component: {fileID: 7697079238127905642}
   m_Layer: 0
   m_Name: 'Pink Slime '
   m_TagString: Untagged
@@ -140,9 +141,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03403592, y: -0.040857613}
+  m_Offset: {x: 0.03403592, y: -0.042945147}
   serializedVersion: 2
-  m_Radius: 0.36307323
+  m_Radius: 0.36516076
 --- !u!50 &2193417642166598694
 Rigidbody2D:
   serializedVersion: 4
@@ -170,3 +171,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &7697079238127905642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3173500513079597734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0602415b9621a434f85ffe39929f0b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
