@@ -12,7 +12,6 @@ public class EnemyMovement : MonoBehaviour
     Rigidbody2D myRigidbody2D;
     BoxCollider2D myBoxCollider2D;
 
-    float slimeMovement;
     void Start()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
