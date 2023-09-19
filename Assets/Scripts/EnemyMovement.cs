@@ -10,48 +10,71 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float moveSpeed = 2f;
 
     Rigidbody2D myRigidbody2D;
-    BoxCollider2D myBoxCollider2D;
+
 
     void Start()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
-        myBoxCollider2D = GetComponent<BoxCollider2D>();
     }
 
     void Update()
     {
-        MovingLeftRight();
 
-        Debug.Log(myRigidbody2D.velocity.x);
+
+        Debug.Log("X Velocity is: " + myRigidbody2D.velocity.x);
 
     }
 
-    void MovingLeftRight()
-    {
-        myRigidbody2D.velocity = new Vector2(moveSpeed, 0f);
-    }
 
-
-
+    //Làm enemy quay đầu = TriggerEnter2D và CompareTag -> phương án tối ưu
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Ground"))
         {
-        // chạm tường thì đổi hướng di chuyển 
-        moveSpeed = -moveSpeed;
-
-        // chạm tường thì quay mặt lại 
-        // Mathf.Sign để biến vận tốc từ 2, 3, 4,... bnh đi nữa -> 1 hoặc -1 r từ đó flip
-        transform.localScale = new Vector2(-(Mathf.Sign(myRigidbody2D.velocity.x)), 1f);
-
-        Debug.Log("I FLIPPED");
-
+            FlipSprite();
+            ReverseDirection();
         }
         else
         {
             return;
         }
     }
+
+    // tách hàm cho tường minh, dễ tái sử dụng
+    void FlipSprite()
+    {
+        transform.localScale = new Vector2(-(Mathf.Sign(myRigidbody2D.velocity.x)), 1f);
+    }
+
+    void ReverseDirection()
+    {
+        moveSpeed = -moveSpeed;
+    }
+
+    // How Lecturers do
+
+    //void MovingLeftRight()
+    //{
+    //    myRigidbody2D.velocity = new Vector2(moveSpeed, 0f);
+    //}
+
+    //void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (other.CompareTag("Ground"))
+    //    {
+    //    // chạm tường thì đổi hướng di chuyển 
+    //    moveSpeed = -moveSpeed;
+
+    //    // chạm tường thì quay mặt lại 
+    //    // Mathf.Sign để biến vận tốc từ 2, 3, 4,... bnh đi nữa -> 1 hoặc -1 r từ đó flip
+    //    transform.localScale = new Vector2(-(Mathf.Sign(myRigidbody2D.velocity.x)), 1f);
+
+    //    }
+    //    else
+    //    {
+    //        return;
+    //    }
+    //}
 
 
 
