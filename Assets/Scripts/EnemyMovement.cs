@@ -7,7 +7,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     // enemy moving speed
-    [SerializeField] float moveSpeed = 2f;
+    [SerializeField] float moveSpeed ;
 
     Rigidbody2D myRigidbody2D;
 
@@ -20,9 +20,9 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
 
-
+        EnemyMoving();
         Debug.Log("X Velocity is: " + myRigidbody2D.velocity.x);
-
+    
     }
 
 
@@ -41,6 +41,11 @@ public class EnemyMovement : MonoBehaviour
     }
 
     // tách hàm cho tường minh, dễ tái sử dụng
+    void EnemyMoving()
+    {
+        myRigidbody2D.velocity = new Vector2(moveSpeed, 0);
+    }
+
     void FlipSprite()
     {
         transform.localScale = new Vector2(-(Mathf.Sign(myRigidbody2D.velocity.x)), 1f);
