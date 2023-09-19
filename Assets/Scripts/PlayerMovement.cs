@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float climbSpeed = 3f;
     [SerializeField] float jumpForce = 8f;
-    [SerializeField] AudioSource footstepsSound;
     // Giá trị nhập vào từ bàn phím, thường là 1, -1 ở mỗi trục
     Vector2 moveInput;
 
