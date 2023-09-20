@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 5705635211449294173}
   - component: {fileID: 5017279074306430736}
   - component: {fileID: 9222345109803462420}
-  - component: {fileID: 3108156094792876131}
+  - component: {fileID: 6717813553486963432}
+  - component: {fileID: 7158875264610257657}
   m_Layer: 10
   m_Name: Hedgehog
   m_TagString: Untagged
@@ -120,7 +121,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00057411194, y: -0.038606167}
+  m_Offset: {x: 0.3111477, y: -0.038606167}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -131,7 +132,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8053627, y: 0.1483984}
+  m_Size: {x: 0.20230484, y: 0.1483984}
   m_EdgeRadius: 0
 --- !u!70 &5017279074306430736
 CapsuleCollider2D:
@@ -195,7 +196,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3108156094792876131
+--- !u!95 &6717813553486963432
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3072282610539602394}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e265375cee6898c479f2bebc56004ff2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7158875264610257657
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -204,7 +226,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3072282610539602394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d52e0adcb127277439f8e72db451acf5, type: 3}
+  m_Script: {fileID: 11500000, guid: 0602415b9621a434f85ffe39929f0b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 2

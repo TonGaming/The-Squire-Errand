@@ -31,8 +31,8 @@ public class EnemyMovement : MonoBehaviour
     {
         if (other.CompareTag("Ground"))
         {
-            FlipSprite();
             ReverseDirection();
+            FlipSprite();
         }
         else
         {
@@ -41,16 +41,19 @@ public class EnemyMovement : MonoBehaviour
     }
 
     // tách hàm cho tường minh, dễ tái sử dụng
+    // Làm enemy di chuyển 
     void EnemyMoving()
     {
         myRigidbody2D.velocity = new Vector2(moveSpeed, 0);
     }
 
+    // lật mặt
     void FlipSprite()
     {
         transform.localScale = new Vector2(-(Mathf.Sign(myRigidbody2D.velocity.x)), 1f);
     }
 
+    // chuyển hướng
     void ReverseDirection()
     {
         moveSpeed = -moveSpeed;
