@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 37093073}
   - component: {fileID: 37093075}
   - component: {fileID: 37093074}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Invisible Walls (7)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1605,11 +1605,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &124970581 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5166253313191871775, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
-  m_PrefabInstance: {fileID: 4566614627111028494}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &126687526
 GameObject:
   m_ObjectHideFlags: 3
@@ -1709,7 +1704,7 @@ GameObject:
   - component: {fileID: 181609982}
   - component: {fileID: 181609984}
   - component: {fileID: 181609983}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Invisible Walls (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1839,7 +1834,7 @@ GameObject:
   - component: {fileID: 210519805}
   - component: {fileID: 210519807}
   - component: {fileID: 210519806}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Invisible Walls (11)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -38153,7 +38148,7 @@ GameObject:
   - component: {fileID: 380682492}
   - component: {fileID: 380682494}
   - component: {fileID: 380682493}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Invisible Walls (13)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -38283,7 +38278,7 @@ GameObject:
   - component: {fileID: 398036661}
   - component: {fileID: 398036663}
   - component: {fileID: 398036662}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Invisible Walls
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -38502,6 +38497,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Pink Slime '
       objectReference: {fileID: 0}
+    - target: {fileID: 3173500513079597734, guid: 4c1256cb42c9ee546875a5e47da305ca, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 5599757538461966895, guid: 4c1256cb42c9ee546875a5e47da305ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 44.488964
@@ -38630,7 +38629,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.31, y: 6.55, z: -10.237443}
+  m_LocalPosition: {x: -4.65, y: 2.79, z: -10.237443}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38686,6 +38685,10 @@ PrefabInstance:
     - target: {fileID: 6537515176489736203, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
       propertyPath: m_Name
       value: Zombie
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537515176489736203, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7135058104806488632, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -38748,7 +38751,7 @@ GameObject:
   - component: {fileID: 680822183}
   - component: {fileID: 680822185}
   - component: {fileID: 680822184}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Invisible Walls (12)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -38878,6 +38881,10 @@ PrefabInstance:
     - target: {fileID: 6537515176489736203, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
       propertyPath: m_Name
       value: Zombie
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537515176489736203, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7135058104806488632, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
       propertyPath: m_LocalScale.x
@@ -40101,7 +40108,7 @@ GameObject:
   - component: {fileID: 791708474}
   - component: {fileID: 791708476}
   - component: {fileID: 791708475}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Invisible Walls (5)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -40750,7 +40757,7 @@ GameObject:
   - component: {fileID: 1154205832}
   - component: {fileID: 1154205834}
   - component: {fileID: 1154205833}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Invisible Walls (4)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -41070,6 +41077,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hedgehog
       objectReference: {fileID: 0}
+    - target: {fileID: 3072282610539602394, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -41180,6 +41191,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Pink Slime '
       objectReference: {fileID: 0}
+    - target: {fileID: 3173500513079597734, guid: 4c1256cb42c9ee546875a5e47da305ca, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 5599757538461966895, guid: 4c1256cb42c9ee546875a5e47da305ca, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -41244,19 +41259,6 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 7452815151662193064, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
   m_PrefabInstance: {fileID: 4566614627111028494}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1430858242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 124970581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b151b3d3f9de82640bc926555bceb774, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delayTime: 2
 --- !u!1 &1479228235
 GameObject:
   m_ObjectHideFlags: 0
@@ -41268,7 +41270,7 @@ GameObject:
   - component: {fileID: 1479228236}
   - component: {fileID: 1479228238}
   - component: {fileID: 1479228237}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Invisible Walls (2)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -41465,7 +41467,7 @@ Transform:
   m_GameObject: {fileID: 1539303725}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28.519018, y: 3.0159247, z: -11.247147}
+  m_LocalPosition: {x: -4.4409814, y: -0.74407554, z: -11.247147}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41540,6 +41542,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie
       objectReference: {fileID: 0}
+    - target: {fileID: 6537515176489736203, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7135058104806488632, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
       propertyPath: m_LocalScale.x
       value: -1
@@ -41605,7 +41611,7 @@ GameObject:
   - component: {fileID: 1616244240}
   - component: {fileID: 1616244242}
   - component: {fileID: 1616244241}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Invisible Walls (9)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -41735,7 +41741,7 @@ GameObject:
   - component: {fileID: 1616522412}
   - component: {fileID: 1616522414}
   - component: {fileID: 1616522413}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Invisible Walls (6)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -41865,7 +41871,7 @@ GameObject:
   - component: {fileID: 1762832902}
   - component: {fileID: 1762832904}
   - component: {fileID: 1762832903}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Invisible Walls (14)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -41995,7 +42001,7 @@ GameObject:
   - component: {fileID: 1764064689}
   - component: {fileID: 1764064691}
   - component: {fileID: 1764064690}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Invisible Walls (3)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -42180,7 +42186,7 @@ Transform:
   m_GameObject: {fileID: 1764610908}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28.519018, y: 3.0159247, z: -11.247147}
+  m_LocalPosition: {x: -4.4409814, y: -0.74407554, z: -11.247147}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -42260,6 +42266,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hedgehog
       objectReference: {fileID: 0}
+    - target: {fileID: 3072282610539602394, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -42276,7 +42286,7 @@ GameObject:
   - component: {fileID: 1826684439}
   - component: {fileID: 1826684441}
   - component: {fileID: 1826684440}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Invisible Walls (8)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -58988,6 +58998,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 8055385564765491905, guid: 711f954670595554f8a81d7bd6d6c6b1, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -59009,7 +59023,7 @@ GameObject:
   - component: {fileID: 1894932467}
   - component: {fileID: 1894932469}
   - component: {fileID: 1894932468}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Invisible Walls (10)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -59261,7 +59275,7 @@ Transform:
   m_GameObject: {fileID: 2041594299}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.519018, y: 3.0159247, z: -11.247147}
+  m_LocalPosition: {x: -4.440982, y: -0.74407554, z: -11.247147}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -60754,6 +60768,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Pink Slime '
       objectReference: {fileID: 0}
+    - target: {fileID: 3173500513079597734, guid: 4c1256cb42c9ee546875a5e47da305ca, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 5599757538461966895, guid: 4c1256cb42c9ee546875a5e47da305ca, type: 3}
       propertyPath: m_LocalScale.x
       value: -1
@@ -60855,6 +60873,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hedgehog
       objectReference: {fileID: 0}
+    - target: {fileID: 3072282610539602394, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7158875264610257657, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
       propertyPath: moveSpeed
       value: 2
@@ -60916,6 +60938,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 8055385564765491905, guid: 711f954670595554f8a81d7bd6d6c6b1, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -60935,11 +60961,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8150544943994868331, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.31
+      value: -4.65
       objectReference: {fileID: 0}
     - target: {fileID: 8150544943994868331, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.55
+      value: 2.79
       objectReference: {fileID: 0}
     - target: {fileID: 8150544943994868331, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_LocalPosition.z
@@ -60976,10 +61002,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5166253313191871775, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1430858242}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
 --- !u!1001 &9087628502040100620
 PrefabInstance:
@@ -60992,6 +61015,10 @@ PrefabInstance:
     - target: {fileID: 6537515176489736203, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
       propertyPath: m_Name
       value: Zombie
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537515176489736203, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7135058104806488632, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
       propertyPath: m_LocalPosition.x

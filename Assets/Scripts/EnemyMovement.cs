@@ -21,7 +21,7 @@ public class EnemyMovement : MonoBehaviour
     {
 
         EnemyMoving();
-        Debug.Log("X Velocity is: " + myRigidbody2D.velocity.x);
+
     
     }
 

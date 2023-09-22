@@ -1,29 +1,42 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PlayerDeathDetector : MonoBehaviour
 {
     [SerializeField] float delayTime = 2f;
 
-    CapsuleCollider2D myCapsuleCollider2D;
+
+    // Khai báo biến PlayerInput
+    PlayerInput myPlayerInput;
+    Animator myAnimator;
 
     void Start()
     {
-        myCapsuleCollider2D = GetComponent<CapsuleCollider2D>();    
+        myPlayerInput = GetComponent<PlayerInput>();
+        myAnimator = GetComponent<Animator>();
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy" )))
+        if (other.gameObject.CompareTag("Enemy"))
         {
-        Invoke("reloadScene", delayTime);
+            Die();
+            Invoke("reloadScene", delayTime);
         }
+    }
+
+    void Die()
+    {
+        myPlayerInput.enabled = false;
+        myAnimator.SetBool("isJumping", false);
+        myAnimator.SetBool("isRunning", false);
     }
 
     void reloadScene()
     {
-        SceneManager.LoadScene("Main Game Level");
+        SceneManager.LoadScene("Level1");
     }
 }

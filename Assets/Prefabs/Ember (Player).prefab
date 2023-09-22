@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6255532009062243166}
   - component: {fileID: 6330318200546482195}
   - component: {fileID: 385468339481505968}
+  - component: {fileID: 2499262167025614396}
   m_Layer: 8
   m_Name: Ember (Player)
   m_TagString: Player
@@ -254,3 +255,16 @@ MonoBehaviour:
   climbSpeed: 3
   jumpForce: 10
   baseGravity: 2
+--- !u!114 &2499262167025614396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5166253313191871775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b151b3d3f9de82640bc926555bceb774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayTime: 2

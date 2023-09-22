@@ -26,7 +26,6 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     // status flag
     bool isGrounded = true;
     bool isClimbable = true;
-    bool isAliveAndKicking = true;
 
 
     // Start is called before the first frame update
@@ -42,18 +41,11 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     // Update is called once per frame
     void Update()
     {
-        if (isAliveAndKicking)
-        {
-            Run();
-            FlipSprite();
-            groundCheck();
-            ClimbLadder();
-            Die();
-        }
-        else
-        {
-            return;
-        }
+
+        Run();
+        FlipSprite();
+        groundCheck();
+        ClimbLadder();
 
         //Debug.Log("Y velocity: " + moveInput.y * climbSpeed);
     }
@@ -80,18 +72,19 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         }
     }
 
-    void Die()
-    {
-        if (myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy")))
-        {
-            isAliveAndKicking = false;
-            
-        }
-        else
-        {
-            return;
-        }
-    }
+    //void Die()
+    //{
+    //    if (myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+    //    {
+    //        isAliveAndKicking = false;
+    //        myAnimator.SetBool("isRunning", false);
+    //        myAnimator.SetBool("isJumping", false);
+    //    }
+    //    else
+    //    {
+    //        return;
+    //    }
+    //}
 
     void groundCheck()
     {
