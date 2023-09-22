@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên script phải giống nhau 
 {
     [SerializeField] float moveSpeed = 5f;
@@ -23,9 +23,12 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     // Khai báo biến gravity scale của Ember
     [SerializeField] float baseGravity = 1f;
 
+    // status flag
     bool isGrounded = true;
     bool isClimbable = true;
-    
+    bool isAliveAndKicking = true;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,10 +42,19 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     // Update is called once per frame
     void Update()
     {
-        Run();
-        FlipSprite();
-        groundCheck();
-        ClimbLadder();
+        if (isAliveAndKicking)
+        {
+            Run();
+            FlipSprite();
+            groundCheck();
+            ClimbLadder();
+            Die();
+        }
+        else
+        {
+            return;
+        }
+
         //Debug.Log("Y velocity: " + moveInput.y * climbSpeed);
     }
 
@@ -68,6 +80,19 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         }
     }
 
+    void Die()
+    {
+        if (myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        {
+            isAliveAndKicking = false;
+            
+        }
+        else
+        {
+            return;
+        }
+    }
+
     void groundCheck()
     {
         if (myCircleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
@@ -76,8 +101,6 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             // chạy animation landing sau đó mới sang animation action
             myAnimator.SetBool("isJumping", false);
             myAnimator.SetBool("isClimbing", false);
-            
-
         }
         else if (!myCircleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground", "Ladder")))
         {
@@ -86,9 +109,9 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             myAnimator.SetBool("isJumping", true);
             myAnimator.SetBool("isRunning", false);
             myAnimator.SetBool("isClimbing", false);
-
             return;
         }
+
         //else if (!myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground", "Ladder")))
         //{
         //    myAnimator.SetBool("isJumping", true);
@@ -98,6 +121,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         //    isGrounded = false;
         //}
     }
+
 
     void Run()
     {
@@ -121,10 +145,10 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             }
 
         }
-            /** Hoẵc có thể code như sau cho clean
-             * bool isRunning = myRigidbody2D.velocity.x >= Mathf.Epsilon;
-             * myAnimator.SetBool("isRunning", isRunning); true false dựa theo biến bool luôn 
-             */
+        /** Hoẵc có thể code như sau cho clean
+         * bool isRunning = myRigidbody2D.velocity.x >= Mathf.Epsilon;
+         * myAnimator.SetBool("isRunning", isRunning); true false dựa theo biến bool luôn 
+         */
     }
 
     void ClimbLadder()
@@ -144,27 +168,28 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         {
             // nếu k chạm vào thang, thì k thể climb
             isClimbable = false;
-            
+
             myAnimator.SetBool("isClimbing", false);
             myAnimator.SetBool("isHanging", false);
             myRigidbody2D.gravityScale = baseGravity;
-            
-            
+
+
         }
 
         // nếu chạm thang k chạm sàn và di chuyển trên trục Y thì chạy animation đang trèo
-        if (isClimbable && (isGrounded || !isGrounded) && Mathf.Abs(myRigidbody2D.velocity.y) >= Mathf.Epsilon){
+        if (isClimbable && (isGrounded || !isGrounded) && Mathf.Abs(myRigidbody2D.velocity.y) >= Mathf.Epsilon)
+        {
 
             myAnimator.SetBool("isClimbing", true);
             myAnimator.SetBool("isHanging", false);
             myAnimator.SetBool("isRunning", false);
         }
-        else if(isClimbable  && Mathf.Abs(myRigidbody2D.velocity.y) <= 0 )
+        else if (isClimbable && Mathf.Abs(myRigidbody2D.velocity.y) <= 0)
         {
             myAnimator.SetBool("isHanging", true);
             myAnimator.SetBool("isClimbing", false);
 
-        } 
+        }
 
 
 
