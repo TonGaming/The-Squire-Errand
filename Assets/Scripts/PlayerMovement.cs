@@ -65,6 +65,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             myRigidbody2D.velocity = new Vector2(myRigidbody2D.velocity.x, jumpForce);
             myAnimator.SetTrigger("takeOff");
             isGrounded = false;
+            
         }
         else if (!isGrounded && value.isPressed)
         {

@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 2193417642166598694}
   - component: {fileID: 7697079238127905642}
   - component: {fileID: 6125654419989042066}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 'Pink Slime '
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

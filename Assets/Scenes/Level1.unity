@@ -38497,10 +38497,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Pink Slime '
       objectReference: {fileID: 0}
-    - target: {fileID: 3173500513079597734, guid: 4c1256cb42c9ee546875a5e47da305ca, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     - target: {fileID: 5599757538461966895, guid: 4c1256cb42c9ee546875a5e47da305ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 44.488964
@@ -38629,7 +38625,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.43, y: 0.72, z: -10.237443}
+  m_LocalPosition: {x: 50.37, y: -10.64, z: -10.237443}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38878,6 +38874,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1002715682}
     m_Modifications:
+    - target: {fileID: 5561655583030261222, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6537515176489736203, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
       propertyPath: m_Name
       value: Zombie
@@ -38887,12 +38887,8 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7135058104806488632, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7135058104806488632, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.953955
+      value: 9.69
       objectReference: {fileID: 0}
     - target: {fileID: 7135058104806488632, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -38986,6 +38982,7 @@ GameObject:
   - component: {fileID: 734653195}
   - component: {fileID: 734653197}
   - component: {fileID: 734653196}
+  - component: {fileID: 734653198}
   m_Layer: 7
   m_Name: Ladder Tilemap
   m_TagString: Untagged
@@ -40097,6 +40094,51 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!61 &734653198
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734653191}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 4.48, y: 10.26}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.89359474, y: 0.22467995}
+  m_EdgeRadius: 0
 --- !u!1 &791708473
 GameObject:
   m_ObjectHideFlags: 0
@@ -40259,6 +40301,75 @@ Transform:
   - {fileID: 1937102718}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &943434677
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1002715682}
+    m_Modifications:
+    - target: {fileID: 2038811668177556782, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 50.329
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038811668177556782, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -14.182
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038811668177556782, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.6473584
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038811668177556782, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038811668177556782, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038811668177556782, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038811668177556782, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038811668177556782, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038811668177556782, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038811668177556782, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3072282610539602394, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
+      propertyPath: m_Name
+      value: 'Hedgehog '
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222345109803462420, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
+      propertyPath: m_Mass
+      value: 0.32275796
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222345109803462420, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222345109803462420, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
+      propertyPath: m_UseAutoMass
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
 --- !u!1 &945311629
 GameObject:
   m_ObjectHideFlags: 0
@@ -40738,6 +40849,7 @@ Transform:
   - {fileID: 1836578694}
   - {fileID: 1217302529}
   - {fileID: 522585275}
+  - {fileID: 1730188399}
   - {fileID: 1305426098}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -41191,14 +41303,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Pink Slime '
       objectReference: {fileID: 0}
-    - target: {fileID: 3173500513079597734, guid: 4c1256cb42c9ee546875a5e47da305ca, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 5599757538461966895, guid: 4c1256cb42c9ee546875a5e47da305ca, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5599757538461966895, guid: 4c1256cb42c9ee546875a5e47da305ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 29.440956
@@ -41467,7 +41571,7 @@ Transform:
   m_GameObject: {fileID: 1539303725}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.63901865, y: -2.8140755, z: -11.247147}
+  m_LocalPosition: {x: 50.579018, y: -14.174076, z: -11.247147}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41541,14 +41645,6 @@ PrefabInstance:
     - target: {fileID: 6537515176489736203, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
       propertyPath: m_Name
       value: Zombie
-      objectReference: {fileID: 0}
-    - target: {fileID: 6537515176489736203, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 7135058104806488632, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7135058104806488632, guid: 9065ac37040357d47aa10ff84108d52f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -41860,6 +41956,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.06501007, y: 1}
   m_EdgeRadius: 0
+--- !u!4 &1730188399 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2038811668177556782, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
+  m_PrefabInstance: {fileID: 943434677}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1762832901
 GameObject:
   m_ObjectHideFlags: 0
@@ -42186,7 +42287,7 @@ Transform:
   m_GameObject: {fileID: 1764610908}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.63901865, y: -2.8140755, z: -11.247147}
+  m_LocalPosition: {x: 50.579018, y: -14.174076, z: -11.247147}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -42218,10 +42319,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1002715682}
     m_Modifications:
-    - target: {fileID: 2038811668177556782, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
-      propertyPath: m_LocalScale.x
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 2038811668177556782, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34.373
@@ -42265,10 +42362,6 @@ PrefabInstance:
     - target: {fileID: 3072282610539602394, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
       propertyPath: m_Name
       value: Hedgehog
-      objectReference: {fileID: 0}
-    - target: {fileID: 3072282610539602394, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -59275,7 +59368,7 @@ Transform:
   m_GameObject: {fileID: 2041594299}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6390184, y: -2.8140755, z: -11.247147}
+  m_LocalPosition: {x: 50.579018, y: -14.174076, z: -11.247147}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -60768,14 +60861,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Pink Slime '
       objectReference: {fileID: 0}
-    - target: {fileID: 3173500513079597734, guid: 4c1256cb42c9ee546875a5e47da305ca, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 5599757538461966895, guid: 4c1256cb42c9ee546875a5e47da305ca, type: 3}
-      propertyPath: m_LocalScale.x
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 5599757538461966895, guid: 4c1256cb42c9ee546875a5e47da305ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 37.94
@@ -60873,14 +60958,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hedgehog
       objectReference: {fileID: 0}
-    - target: {fileID: 3072282610539602394, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 7158875264610257657, guid: 33cadea2b5d3ef548a78e4163333ab08, type: 3}
-      propertyPath: moveSpeed
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -60938,10 +61015,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Slime
       objectReference: {fileID: 0}
-    - target: {fileID: 8055385564765491905, guid: 711f954670595554f8a81d7bd6d6c6b1, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -60955,17 +61028,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2499262167025614396, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
+      propertyPath: deadVertical
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499262167025614396, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
+      propertyPath: deadHorizontal
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5166253313191871775, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_Name
       value: Ember (Player)
       objectReference: {fileID: 0}
     - target: {fileID: 8150544943994868331, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.43
+      value: 50.37
       objectReference: {fileID: 0}
     - target: {fileID: 8150544943994868331, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.72
+      value: -10.64
       objectReference: {fileID: 0}
     - target: {fileID: 8150544943994868331, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_LocalPosition.z
