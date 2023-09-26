@@ -190,7 +190,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5166253313191871775}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -267,4 +267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b151b3d3f9de82640bc926555bceb774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayTime: 2
+  waitTillReload: 2
+  deadKickFromLeft: {x: 10, y: 10}
+  deadKickFromRight: {x: -10, y: 10}

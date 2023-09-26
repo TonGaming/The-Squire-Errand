@@ -61028,17 +61028,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2499262167025614396, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
-      propertyPath: deadVertical
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2499262167025614396, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
-      propertyPath: deadHorizontal
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 5166253313191871775, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_Name
       value: Ember (Player)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6255532009062243166, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
+      propertyPath: m_BodyType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8150544943994868331, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_LocalPosition.x
