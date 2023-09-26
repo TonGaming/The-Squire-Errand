@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float climbSpeed = 3f;
     [SerializeField] float jumpForce = 8f;
+
+
+
     // Giá trị nhập vào từ bàn phím, thường là 1, -1 ở mỗi trục
     Vector2 moveInput;
 
@@ -36,6 +39,8 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         myAnimator = GetComponent<Animator>();
         myCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
         myCircleCollider2D = GetComponent<CircleCollider2D>();
+
+
     }
 
     // Update is called once per frame
@@ -219,4 +224,6 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             transform.localScale = new Vector2(Mathf.Sign(myRigidbody2D.velocity.x), 1f);
         }
     }
+
+    
 }
