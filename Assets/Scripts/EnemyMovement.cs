@@ -26,7 +26,7 @@ public class EnemyMovement : MonoBehaviour
 
 
     //Làm enemy quay đầu = TriggerEnter2D và CompareTag -> phương án tối ưu
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Ground"))
         {

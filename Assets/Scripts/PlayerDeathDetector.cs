@@ -45,7 +45,7 @@ public class PlayerDeathDetector : MonoBehaviour
 
     void Die()
     {
-        if (myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy")) && isAlive)
+        if (myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")) && isAlive)
         {
             myPlayerInput.enabled = false;
             myAnimator.SetBool("isJumping", false);
@@ -68,7 +68,7 @@ public class PlayerDeathDetector : MonoBehaviour
 
                 myRigidbody2D.gravityScale = baseGravity;
                 isAlive = false;
-                myAudioSource.PlayOneShot(DeathSound,  0.5f);
+                myAudioSource.PlayOneShot(DeathSound,  1f);
 
                 Invoke("reloadScene", waitTillReload);
             }
@@ -88,7 +88,7 @@ public class PlayerDeathDetector : MonoBehaviour
 
                 myRigidbody2D.gravityScale = baseGravity;
                 isAlive = false;
-                myAudioSource.PlayOneShot(DeathSound, 0.5f);
+                myAudioSource.PlayOneShot(DeathSound, 1f);
 
                 Invoke("reloadScene", waitTillReload);
             }
