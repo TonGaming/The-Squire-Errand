@@ -1,4 +1,5 @@
 ﻿
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -8,20 +9,21 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     [SerializeField] float climbSpeed = 3f;
     [SerializeField] float jumpForce = 8f;
 
-
-
+    [SerializeField] Rigidbody2D bullet;
+    [SerializeField] Transform myGun;
     // Giá trị nhập vào từ bàn phím, thường là 1, -1 ở mỗi trục
     Vector2 moveInput;
 
     // khai báo biến rigidbody2D
     Rigidbody2D myRigidbody2D;
-
+    
     // Khai báo biến Animator
     Animator myAnimator;
 
     // Khai báo biến Collider2D
     CircleCollider2D myCircleCollider2D;
     CapsuleCollider2D myCapsuleCollider2D;
+    BoxCollider2D myBoxCollider2D;
 
     // Khai báo biến gravity scale của Ember
     [SerializeField] float baseGravity = 1f;
@@ -39,14 +41,14 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         myAnimator = GetComponent<Animator>();
         myCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
         myCircleCollider2D = GetComponent<CircleCollider2D>();
-
+        myBoxCollider2D = GetComponent<BoxCollider2D>();
+        myGun = GetComponent<Transform>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
         Run();
         FlipSprite();
         groundCheck();
@@ -70,7 +72,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             myRigidbody2D.velocity = new Vector2(myRigidbody2D.velocity.x, jumpForce);
             myAnimator.SetTrigger("takeOff");
             isGrounded = false;
-            
+
         }
         else if (!isGrounded && value.isPressed)
         {
@@ -78,19 +80,12 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         }
     }
 
-    //void Die()
-    //{
-    //    if (myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy")))
-    //    {
-    //        isAliveAndKicking = false;
-    //        myAnimator.SetBool("isRunning", false);
-    //        myAnimator.SetBool("isJumping", false);
-    //    }
-    //    else
-    //    {
-    //        return;
-    //    }
-    //}
+    void OnFire(InputValue value)
+    {
+        
+        Instantiate(bullet, myGun.position, transform.rotation);
+
+    }
 
     void groundCheck()
     {
@@ -111,14 +106,6 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             return;
         }
 
-        //else if (!myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground", "Ladder")))
-        //{
-        //    myAnimator.SetBool("isJumping", true);
-        //    myAnimator.SetBool("isClimbing", false);
-        //    myAnimator.SetTrigger("takeOff");
-
-        //    isGrounded = false;
-        //}
     }
 
 
@@ -159,22 +146,31 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             myRigidbody2D.gravityScale = 0;
             myAnimator.SetBool("isJumping", false);
 
-            // cho phép trèo thang
             Vector2 climbingInput = new Vector2(myRigidbody2D.velocity.x, moveInput.y * climbSpeed);
             myRigidbody2D.velocity = climbingInput;
+
+            // cho phép trèo thang hướng lên chỉ khi đầu chạm vào thang
+            //if (Input.GetKey(KeyCode.W) && !myBoxCollider2D.IsTouchingLayers(LayerMask.GetMask("Ladder")))
+            //{
+            //    myRigidbody2D.velocity = new Vector2(myRigidbody2D.velocity.x, 0f);
+
+            //    Debug.Log("Y velocity is: " + myRigidbody2D.velocity.y);
+            //}
+            //else { return; }
+
+
         }
         else if (!myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ladder")))
         {
             // nếu k chạm vào thang, thì k thể climb
             isClimbable = false;
-
             myAnimator.SetBool("isClimbing", false);
             myAnimator.SetBool("isHanging", false);
             myRigidbody2D.gravityScale = baseGravity;
-
-
         }
+        else { return; }
 
+        // Laadder Animation
         // nếu chạm thang k chạm sàn và di chuyển trên trục Y thì chạy animation đang trèo
         if (isClimbable && (isGrounded || !isGrounded) && Mathf.Abs(myRigidbody2D.velocity.y) >= Mathf.Epsilon)
         {
@@ -183,13 +179,12 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             myAnimator.SetBool("isHanging", false);
             myAnimator.SetBool("isRunning", false);
         }
-        else if (isClimbable && Mathf.Abs(myRigidbody2D.velocity.y) <= 0)
+        else if (isClimbable && Mathf.Abs(myRigidbody2D.velocity.y) <= Mathf.Epsilon)
         {
             myAnimator.SetBool("isHanging", true);
             myAnimator.SetBool("isClimbing", false);
-
         }
-
+        else { return; }
 
 
 
@@ -225,5 +220,6 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         }
     }
 
-    
+
+
 }
