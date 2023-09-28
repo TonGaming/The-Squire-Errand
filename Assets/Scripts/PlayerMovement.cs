@@ -9,14 +9,13 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     [SerializeField] float climbSpeed = 3f;
     [SerializeField] float jumpForce = 8f;
 
-    [SerializeField] Rigidbody2D bullet;
-    [SerializeField] Transform myGun;
+
     // Giá trị nhập vào từ bàn phím, thường là 1, -1 ở mỗi trục
     Vector2 moveInput;
 
     // khai báo biến rigidbody2D
     Rigidbody2D myRigidbody2D;
-    
+
     // Khai báo biến Animator
     Animator myAnimator;
 
@@ -42,7 +41,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         myCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
         myCircleCollider2D = GetComponent<CircleCollider2D>();
         myBoxCollider2D = GetComponent<BoxCollider2D>();
-        myGun = GetComponent<Transform>();
+
 
     }
 
@@ -80,12 +79,12 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         }
     }
 
-    void OnFire(InputValue value)
-    {
-        
-        Instantiate(bullet, myGun.position, transform.rotation);
+    //void OnFire(InputValue value)
+    //{
 
-    }
+    //    Instantiate(bullet, myGun.position, transform.rotation);
+
+    //}
 
     void groundCheck()
     {
