@@ -86,7 +86,7 @@ public class PlayerDeathDetector : MonoBehaviour
                 isAlive = false;
                 myAudioSource.PlayOneShot(DeathSound, 1f);
 
-                Invoke("reloadScene", waitTillReload);
+                Invoke("ReloadScene", waitTillReload);
             }
 
             else
@@ -97,7 +97,7 @@ public class PlayerDeathDetector : MonoBehaviour
         }
     }
 
-    void reloadScene()
+    void ReloadScene()
     {
         SceneManager.LoadScene("Level1");
     }
