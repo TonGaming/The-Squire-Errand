@@ -1,15 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] float bulletSpeed = 15;
-
+    [SerializeField] float bulletSpeed = 15f;
+    float delayTime = 1.2f;
     Rigidbody2D bulletRigidbody;
     Transform bulletTransform;
 
+    AudioSource bulletAudioSource;
+    [SerializeField] AudioClip arrowImpact;
+    [SerializeField] float volume = .5f;
 
     Vector2 bulletTrajectory;
     Vector2 bulletDirection;
@@ -17,14 +21,14 @@ public class Bullet : MonoBehaviour
     // get ra player 
     PlayerMovement myPlayer;
 
-
+    bool isFlying = true;
 
     // Start is called before the first frame update
     void Start()
     {
         bulletRigidbody = GetComponent<Rigidbody2D>();
         bulletTransform = GetComponent<Transform>();
-
+        bulletAudioSource = GetComponent<AudioSource>();
 
 
         // Get ra player ở một script playermovement
@@ -41,19 +45,42 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         BulletHeading();
+        OnArrowImpact();
     }
 
 
     void BulletHeading()
     {
-        BulletFiring();
+        ArrowFiring();
     }
 
-    void BulletFiring()
+    void ArrowFiring()
     {
         bulletRigidbody.velocity = bulletTrajectory; // bắn đạn ra
         bulletTransform.localScale = bulletDirection; // đạn quay hướng nào
+    }
+
+    void OnArrowImpact()
+    {
+        if (bulletRigidbody.IsTouchingLayers(LayerMask.GetMask("Ground", "Enemy")) && isFlying == true)
+        {
+
+            bulletAudioSource.PlayOneShot(arrowImpact, volume);
+
+            isFlying = false;
+
+            Invoke("DestroyArrow", delayTime);
+
+
+        }
+
+
+    }
+
+    void DestroyArrow()
+    {
+        Destroy(gameObject, 0f);
+        isFlying = true;
     }
 }

@@ -7,21 +7,32 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     // enemy moving speed
-    [SerializeField] float moveSpeed ;
+    [SerializeField] float moveSpeed;
 
-    Rigidbody2D myRigidbody2D;
+    [SerializeField] float delayTime = 1.5f;
+    Rigidbody2D enemyRigidbody;
+    Animator enemyAnimator;
 
+    bool isAlive;
 
     void Start()
     {
-        myRigidbody2D = GetComponent<Rigidbody2D>();
+        enemyRigidbody = GetComponent<Rigidbody2D>();
+        enemyAnimator = GetComponent<Animator>();
+
+        isAlive = true;
     }
 
     void Update()
     {
+
         EnemyMoving();
 
-    
+
+
+
+        Death();
+
     }
 
 
@@ -43,13 +54,24 @@ public class EnemyMovement : MonoBehaviour
     // Làm enemy di chuyển 
     void EnemyMoving()
     {
-        myRigidbody2D.velocity = new Vector2(moveSpeed, 0);
+        if (isAlive)
+        {
+            enemyRigidbody.velocity = new Vector2(moveSpeed, 0);
+
+        }
+        else if (!isAlive)
+        {
+            // khoá di chuyển khi chết
+            enemyRigidbody.velocity = new Vector2(0f, 0f);
+
+        }
+
     }
 
     // lật mặt
     void FlipSprite()
     {
-        transform.localScale = new Vector2(-(Mathf.Sign(myRigidbody2D.velocity.x)), 1f);
+        transform.localScale = new Vector2(-(Mathf.Sign(enemyRigidbody.velocity.x)), 1f);
     }
 
     // chuyển hướng
@@ -58,31 +80,20 @@ public class EnemyMovement : MonoBehaviour
         moveSpeed = -moveSpeed;
     }
 
-    // How Lecturers do
-
-    //void MovingLeftRight()
-    //{
-    //    myRigidbody2D.velocity = new Vector2(moveSpeed, 0f);
-    //}
-
-    //void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    if (other.CompareTag("Ground"))
-    //    {
-    //    // chạm tường thì đổi hướng di chuyển 
-    //    moveSpeed = -moveSpeed;
-
-    //    // chạm tường thì quay mặt lại 
-    //    // Mathf.Sign để biến vận tốc từ 2, 3, 4,... bnh đi nữa -> 1 hoặc -1 r từ đó flip
-    //    transform.localScale = new Vector2(-(Mathf.Sign(myRigidbody2D.velocity.x)), 1f);
-
-    //    }
-    //    else
-    //    {
-    //        return;
-    //    }
-    //}
-
+    void Death()
+    {
+        // nếu ăn đạn và vẫn sống thì ...
+        if (enemyRigidbody.IsTouchingLayers(LayerMask.GetMask("Bullet")) && isAlive)
+        {
+            Destroy(gameObject, delayTime); // huỷ object
+            enemyAnimator.SetBool("isDead", true); // chạy animation chết (nếu có)
+            isAlive = false;
+        }
+        else
+        {
+            return;
+        }
+    }
 
 
 

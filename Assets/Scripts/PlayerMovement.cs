@@ -131,7 +131,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
 
         }
         /** Hoẵc có thể code như sau cho clean
-         * bool isRunning = myRigidbody2D.velocity.x >= Mathf.Epsilon;
+         * bool isRunning = enemyRigidbody.velocity.x >= Mathf.Epsilon;
          * myAnimator.SetBool("isRunning", isRunning); true false dựa theo biến bool luôn 
          */
     }
@@ -151,9 +151,9 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             // cho phép trèo thang hướng lên chỉ khi đầu chạm vào thang
             //if (Input.GetKey(KeyCode.W) && !myBoxCollider2D.IsTouchingLayers(LayerMask.GetMask("Ladder")))
             //{
-            //    myRigidbody2D.velocity = new Vector2(myRigidbody2D.velocity.x, 0f);
+            //    enemyRigidbody.velocity = new Vector2(enemyRigidbody.velocity.x, 0f);
 
-            //    Debug.Log("Y velocity is: " + myRigidbody2D.velocity.y);
+            //    Debug.Log("Y velocity is: " + enemyRigidbody.velocity.y);
             //}
             //else { return; }
 

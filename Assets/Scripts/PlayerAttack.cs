@@ -16,13 +16,14 @@ public class PlayerAttack : MonoBehaviour
 
     // check di chuyển và kéo cung
     bool isMoving;
-    bool isPullingBow = false ;
+    bool isPullingBow = false;
 
     AudioSource playerAudioSource;
     [SerializeField] AudioClip arrowDrawingSound;
+    [SerializeField] AudioClip arrowWhizzlingSound;
 
-    [SerializeField] float volume = 0.8f;
-    float delayTime = .8f;
+    [SerializeField] float volume = 0.7f;
+    float delayTime = 1.2f;
 
 
     // Start is called before the first frame update
@@ -61,13 +62,13 @@ public class PlayerAttack : MonoBehaviour
         {
             isPullingBow = true;
 
-            Invoke("ShootArrow", delayTime); // bắn tên sau tầm 1s chạy animation
-            Invoke("GoBackToIdling", delayTime + 0.2f); // mũi tên xuất hiện thì về lại chế độ bthg
+            Invoke("ShootArrow", delayTime); // bắn tên sau tầm .8s chạy animation
+            Invoke("GoBackToIdling", delayTime + 0.2f); // sau khi mũi tên xuất hiện thì về lại chế độ bthg
 
             playerAudioSource.PlayOneShot(arrowDrawingSound, volume);
 
             playerAnimator.SetBool("isDrawing", true);
-            
+
         }
         else if (isMoving == true)
         {
@@ -83,8 +84,9 @@ public class PlayerAttack : MonoBehaviour
     {
         if (isPullingBow)
         {
-        Instantiate(bullet, myGun.position, transform.rotation);
-        } 
+            Instantiate(bullet, myGun.position, transform.rotation); // spawn arrow
+            playerAudioSource.PlayOneShot(arrowWhizzlingSound, volume); // chạy âm thanh xé gió
+        }
         else
         {
             return;
