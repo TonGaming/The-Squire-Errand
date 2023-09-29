@@ -14,14 +14,15 @@ public class PlayerAttack : MonoBehaviour
 
     Animator playerAnimator;
 
-    // check di chuyển
+    // check di chuyển và kéo cung
     bool isMoving;
+    bool isPullingBow = false ;
 
     AudioSource playerAudioSource;
     [SerializeField] AudioClip arrowDrawingSound;
-    [SerializeField] AudioClip arrowHitSound;
-    [SerializeField] float volume = 0.5f;
-    [SerializeField] float delayTime = 3.5f;
+
+    [SerializeField] float volume = 0.8f;
+    float delayTime = .8f;
 
 
     // Start is called before the first frame update
@@ -36,12 +37,12 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movingCheck();
+        MoveCheck();
         PullBow();
 
     }
 
-    void movingCheck()
+    void MoveCheck()
     {
         if (Mathf.Abs(playerRigidbody.velocity.x) >= Mathf.Epsilon && Mathf.Abs(playerRigidbody.velocity.y) >= Mathf.Epsilon)
         {
@@ -56,25 +57,45 @@ public class PlayerAttack : MonoBehaviour
 
     void PullBow()
     {
-        if (Input.GetKey(KeyCode.Mouse0) && isMoving == false)
+        if (Input.GetKey(KeyCode.Mouse0) && isMoving == false && isPullingBow == false)
         {
+            isPullingBow = true;
 
-            Invoke("ShootArrow", delayTime);
+            Invoke("ShootArrow", delayTime); // bắn tên sau tầm 1s chạy animation
+            Invoke("GoBackToIdling", delayTime + 0.2f); // mũi tên xuất hiện thì về lại chế độ bthg
+
             playerAudioSource.PlayOneShot(arrowDrawingSound, volume);
 
             playerAnimator.SetBool("isDrawing", true);
+            
         }
         else if (isMoving == true)
         {
-            playerAnimator.SetBool("isDrawing", false);
+            isPullingBow = false;
 
+            playerAudioSource.Stop();
+
+            playerAnimator.SetBool("isDrawing", false);
         }
     }
 
     void ShootArrow()
     {
+        if (isPullingBow)
+        {
         Instantiate(bullet, myGun.position, transform.rotation);
+        } 
+        else
+        {
+            return;
+        }
     }
 
+    void GoBackToIdling()
+    {
+        isPullingBow = false;
+        playerAnimator.SetBool("isIdling", true);
+        playerAnimator.SetBool("isDrawing", false);
+    }
 }
 

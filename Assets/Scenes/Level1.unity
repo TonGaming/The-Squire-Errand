@@ -165,9 +165,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a8867a358a7e79345b9bd8ec564014de, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7332b5c57204b2444b702fc338dc385a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.785
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -40215,6 +40215,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 2091704570}
   myGun: {fileID: 2028692056}
+  arrowDrawingSound: {fileID: 8300000, guid: d0aeadc471fff1c4f96b2e9083fd3ba5, type: 3}
+  volume: 1
 --- !u!1 &1505636693
 GameObject:
   m_ObjectHideFlags: 0
@@ -59150,11 +59152,11 @@ PrefabInstance:
       objectReference: {fileID: 539142715391067553, guid: a6dee0edca0800549b05040c4612ea4c, type: 3}
     - target: {fileID: 925105723516224042, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.695
+      value: 0.387
       objectReference: {fileID: 0}
     - target: {fileID: 925105723516224042, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.125
+      value: -0.207
       objectReference: {fileID: 0}
     - target: {fileID: 5166253313191871775, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_Name
