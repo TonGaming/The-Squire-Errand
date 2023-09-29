@@ -57,6 +57,8 @@ public class PlayerDeathDetector : MonoBehaviour
             {
                 myRigidbody2D.velocity = deadKickFromLeft;
 
+                Debug.Log("X velocity is: " + myRigidbody2D.velocity.x);
+
                 // trigger animation 
                 myAnimator.SetTrigger("isDeadLeft");
 
@@ -74,6 +76,8 @@ public class PlayerDeathDetector : MonoBehaviour
             else if (myTransform.localScale.x < 0)
             {
 
+                Debug.Log("X velocity is: " + myRigidbody2D.velocity.x);
+
                 myRigidbody2D.velocity = deadKickFromRight;
 
                 myAnimator.SetTrigger("isDeadRight");
@@ -86,7 +90,7 @@ public class PlayerDeathDetector : MonoBehaviour
                 isAlive = false;
                 myAudioSource.PlayOneShot(DeathSound, 1f);
 
-                Invoke("ReloadScene", waitTillReload);
+                Invoke("reloadScene", waitTillReload);
             }
 
             else
@@ -97,7 +101,7 @@ public class PlayerDeathDetector : MonoBehaviour
         }
     }
 
-    void ReloadScene()
+    void reloadScene()
     {
         SceneManager.LoadScene("Level1");
     }
