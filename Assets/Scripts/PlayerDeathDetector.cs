@@ -57,8 +57,6 @@ public class PlayerDeathDetector : MonoBehaviour
             {
                 myRigidbody2D.velocity = deadKickFromLeft;
 
-                Debug.Log("X velocity is: " + myRigidbody2D.velocity.x);
-
                 // trigger animation 
                 myAnimator.SetTrigger("isDeadLeft");
 
@@ -75,8 +73,6 @@ public class PlayerDeathDetector : MonoBehaviour
             // Nếu nhân vật đang quay trái
             else if (myTransform.localScale.x < 0)
             {
-
-                Debug.Log("X velocity is: " + myRigidbody2D.velocity.x);
 
                 myRigidbody2D.velocity = deadKickFromRight;
 
