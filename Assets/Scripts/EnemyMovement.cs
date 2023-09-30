@@ -9,17 +9,16 @@ public class EnemyMovement : MonoBehaviour
     // enemy moving speed
     [SerializeField] float moveSpeed;
 
-    [SerializeField] float delayTime = 1.5f;
     Rigidbody2D enemyRigidbody;
     Animator enemyAnimator;
-
+    CapsuleCollider2D enemyCapsuleCollider;
     bool isAlive;
 
     void Start()
     {
         enemyRigidbody = GetComponent<Rigidbody2D>();
         enemyAnimator = GetComponent<Animator>();
-
+        enemyCapsuleCollider = GetComponent<CapsuleCollider2D>();
         isAlive = true;
     }
 
@@ -85,8 +84,11 @@ public class EnemyMovement : MonoBehaviour
         // nếu ăn đạn và vẫn sống thì ...
         if (enemyRigidbody.IsTouchingLayers(LayerMask.GetMask("Bullet")) && isAlive)
         {
-            Destroy(gameObject, delayTime); // huỷ object
-            enemyAnimator.SetBool("isDead", true); // chạy animation chết (nếu có)
+            // Destroy(gameObject, delayTime); // huỷ object
+
+            Invoke("MakeCorpses", 0f);
+
+            enemyAnimator.SetBool("isDead", true); // chạy animation chết one side(nếu có)
             isAlive = false;
         }
         else
@@ -95,6 +97,10 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    void MakeCorpses()
+    {
+        enemyCapsuleCollider.isTrigger = true;
+    }
 
 
 }

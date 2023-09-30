@@ -40,12 +40,13 @@ public class PlayerDeathDetector : MonoBehaviour
 
     void Update()
     {
-        Die();
+        
     }
 
-    void Die()
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if (myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")) && isAlive)
+        
+        if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Hazard")) && isAlive)
         {
             myPlayerInput.enabled = false;
             myAnimator.SetBool("isJumping", false);
@@ -100,6 +101,13 @@ public class PlayerDeathDetector : MonoBehaviour
 
         }
     }
+
+    // Get Player Living Status 
+    public bool GetIsAliveState()
+    {
+        return isAlive;
+    }
+    
 
     void reloadScene()
     {

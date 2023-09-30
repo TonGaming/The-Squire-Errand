@@ -6,13 +6,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
-    // Get player rigidbody
+    // Get player components
     Rigidbody2D playerRigidbody;
+    Animator playerAnimator;
+
+    PlayerDeathDetector playerDeathDetector;
+
     // Get Gun and Bullet
     [SerializeField] GameObject bullet;
     [SerializeField] Transform myGun;
 
-    Animator playerAnimator;
+
 
     // check di chuyển và kéo cung
     bool isMoving;
@@ -33,6 +37,8 @@ public class PlayerAttack : MonoBehaviour
 
         playerAudioSource = GetComponent<AudioSource>();
         playerAnimator = GetComponent<Animator>();
+
+        playerDeathDetector = FindObjectOfType<PlayerDeathDetector>();
     }
 
     // Update is called once per frame
@@ -40,7 +46,6 @@ public class PlayerAttack : MonoBehaviour
     {
         MoveCheck();
         PullBow();
-
     }
 
     void MoveCheck()
@@ -56,6 +61,7 @@ public class PlayerAttack : MonoBehaviour
 
     }
 
+
     void PullBow()
     {
         if (Input.GetKey(KeyCode.Mouse0) && isMoving == false && isPullingBow == false)
@@ -70,7 +76,7 @@ public class PlayerAttack : MonoBehaviour
             playerAnimator.SetBool("isDrawing", true);
 
         }
-        else if (isMoving == true)
+        else if (isMoving == true || playerDeathDetector.GetIsAliveState() == false)
         {
             isPullingBow = false;
 

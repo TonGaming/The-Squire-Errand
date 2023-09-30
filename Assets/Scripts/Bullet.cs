@@ -7,9 +7,13 @@ using UnityEngine.InputSystem;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] float bulletSpeed = 15f;
+
     float delayTime = 1.2f;
+
     Rigidbody2D bulletRigidbody;
+    CapsuleCollider2D bulletCapsuleCollider;
     Transform bulletTransform;
+    SpriteRenderer bulletSpriteRenderer;
 
     AudioSource bulletAudioSource;
     [SerializeField] AudioClip arrowImpact;
@@ -29,7 +33,8 @@ public class Bullet : MonoBehaviour
         bulletRigidbody = GetComponent<Rigidbody2D>();
         bulletTransform = GetComponent<Transform>();
         bulletAudioSource = GetComponent<AudioSource>();
-
+        bulletCapsuleCollider = GetComponent<CapsuleCollider2D>();
+        bulletSpriteRenderer = GetComponent<SpriteRenderer>();
 
         // Get ra player ở một script playermovement
         myPlayer = FindObjectOfType<PlayerMovement>();
@@ -46,7 +51,7 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         BulletHeading();
-        OnArrowImpact();
+
     }
 
 
@@ -61,22 +66,32 @@ public class Bullet : MonoBehaviour
         bulletTransform.localScale = bulletDirection; // đạn quay hướng nào
     }
 
-    void OnArrowImpact()
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if (bulletRigidbody.IsTouchingLayers(LayerMask.GetMask("Ground", "Enemy")) && isFlying == true)
+        if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Ground")) && isFlying == true)
         {
-
+            // audio will run 
             bulletAudioSource.PlayOneShot(arrowImpact, volume);
 
             isFlying = false;
 
+            bulletCapsuleCollider.isTrigger = true;
+
+            // hide the arrow away for a while 
+            Vector2 bulletHiding = new (10f, 0f);
+            bulletTransform.position = bulletHiding;
+
+            // destroy the bullet after bullet's audio have been played
             Invoke("DestroyArrow", delayTime);
 
-
+            
         }
-
-
+        
     }
+    
+
+
+    
 
     void DestroyArrow()
     {
