@@ -24,8 +24,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2155548389529626698}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.355, y: -0.2, z: -0.1070851}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.387, y: -0.207, z: -0.1070851}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,9 +45,9 @@ GameObject:
   - component: {fileID: 2787027625780897761}
   - component: {fileID: 3413546477762374542}
   - component: {fileID: 6255532009062243166}
-  - component: {fileID: 657189585605616010}
   - component: {fileID: 6330318200546482195}
   - component: {fileID: 385468339481505968}
+  - component: {fileID: 7567765019175224958}
   - component: {fileID: 2499262167025614396}
   - component: {fileID: 2928457798981290784}
   m_Layer: 8
@@ -243,51 +243,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &657189585605616010
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5166253313191871775}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0043029785, y: 0.44}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.62997055, y: 0.13160324}
-  m_EdgeRadius: 0
 --- !u!114 &6330318200546482195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,6 +289,23 @@ MonoBehaviour:
   climbSpeed: 3
   jumpForce: 10
   baseGravity: 2
+--- !u!114 &7567765019175224958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5166253313191871775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cc40a6ea9a12fa4f889d5a4f24c65da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
+  myGun: {fileID: 925105723516224042}
+  arrowDrawingSound: {fileID: 8300000, guid: e36225bd32878384a972d4fefa338a30, type: 3}
+  arrowWhizzlingSound: {fileID: 8300000, guid: f01434b55e77d0d45bf8882676de45e4, type: 3}
+  volume: 1
 --- !u!114 &2499262167025614396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,9 +319,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitTillReload: 2
-  deadKickFromLeft: {x: 50, y: 10}
-  deadKickFromRight: {x: -50, y: 10}
-  DeathSound: {fileID: 8300000, guid: 25fb3128915f72141bb91a5d09adfd71, type: 3}
+  DeathSound: {fileID: 0}
+  deadKickFromLeft: {x: 10, y: 10}
+  deadKickFromRight: {x: -10, y: 10}
 --- !u!82 &2928457798981290784
 AudioSource:
   m_ObjectHideFlags: 0
@@ -361,10 +333,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.673
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

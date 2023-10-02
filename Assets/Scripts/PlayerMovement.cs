@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float climbSpeed = 3f;
     [SerializeField] float jumpForce = 8f;
-
+    //[SerializeField] float volume = 1f;
 
     // Giá trị nhập vào từ bàn phím, thường là 1, -1 ở mỗi trục
     Vector2 moveInput;
@@ -19,13 +19,15 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     // Khai báo biến Animator
     Animator myAnimator;
 
+
+
     // Khai báo biến Collider2D
     CircleCollider2D myCircleCollider2D;
     CapsuleCollider2D myCapsuleCollider2D;
     BoxCollider2D myBoxCollider2D;
 
     // Khai báo biến gravity scale của Ember
-    [SerializeField] float baseGravity = 1f;
+    [SerializeField] float baseGravity = 2f;
 
     // status flag
     bool isGrounded = true;
@@ -41,7 +43,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         myCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
         myCircleCollider2D = GetComponent<CircleCollider2D>();
         myBoxCollider2D = GetComponent<BoxCollider2D>();
-
+        
 
     }
 
@@ -55,6 +57,8 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
 
         //Debug.Log("Y velocity: " + moveInput.y * climbSpeed);
     }
+
+    
 
     void OnMove(InputValue value) // Luôn phải tuân thủ tên Hàm là Pascal Case
     {
@@ -142,21 +146,13 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         {
             // báo xem có climb-able hay k
             isClimbable = true;
-            myRigidbody2D.gravityScale = 0;
+            //myRigidbody2D.gravityScale = 0;
             myAnimator.SetBool("isJumping", false);
+            myRigidbody2D.gravityScale = 0;
+
 
             Vector2 climbingInput = new Vector2(myRigidbody2D.velocity.x, moveInput.y * climbSpeed);
             myRigidbody2D.velocity = climbingInput;
-
-            // cho phép trèo thang hướng lên chỉ khi đầu chạm vào thang
-            //if (Input.GetKey(KeyCode.W) && !myBoxCollider2D.IsTouchingLayers(LayerMask.GetMask("Ladder")))
-            //{
-            //    enemyRigidbody.velocity = new Vector2(enemyRigidbody.velocity.x, 0f);
-
-            //    Debug.Log("Y velocity is: " + enemyRigidbody.velocity.y);
-            //}
-            //else { return; }
-
 
         }
         else if (!myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ladder")))
@@ -167,6 +163,15 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             myAnimator.SetBool("isHanging", false);
             myRigidbody2D.gravityScale = baseGravity;
         }
+        //else if (myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy")) && isClimbable)
+        //{
+        //    myRigidbody2D.gravityScale = baseGravity;
+        //    myRigidbody2D.velocity = new Vector2(10, 10f) ;
+        //    Debug.Log("YOU ARE DEADDDDD");
+        //    // trigger animation 
+        //    myAnimator.SetTrigger("isDeadLeft");
+
+        //}
         else { return; }
 
         // Laadder Animation

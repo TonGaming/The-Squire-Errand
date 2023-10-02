@@ -86,7 +86,7 @@ public class EnemyMovement : MonoBehaviour
         {
             // Destroy(gameObject, delayTime); // huỷ object
 
-            Invoke("MakeCorpses", 0f);
+            Invoke("MakeCorpses", 0.1f);
 
             enemyAnimator.SetBool("isDead", true); // chạy animation chết one side(nếu có)
             isAlive = false;
@@ -100,6 +100,7 @@ public class EnemyMovement : MonoBehaviour
     void MakeCorpses()
     {
         enemyCapsuleCollider.isTrigger = true;
+
     }
 
 

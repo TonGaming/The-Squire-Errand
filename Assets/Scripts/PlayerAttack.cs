@@ -26,6 +26,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] AudioClip arrowDrawingSound;
     [SerializeField] AudioClip arrowWhizzlingSound;
 
+
     [SerializeField] float volume = 0.7f;
     float delayTime = 1.2f;
 
@@ -46,6 +47,8 @@ public class PlayerAttack : MonoBehaviour
     {
         MoveCheck();
         PullBow();
+
+        
     }
 
     void MoveCheck()
@@ -76,7 +79,7 @@ public class PlayerAttack : MonoBehaviour
             playerAnimator.SetBool("isDrawing", true);
 
         }
-        else if (isMoving == true || playerDeathDetector.GetIsAliveState() == false)
+        else if (isMoving == true || playerDeathDetector.GetIsAliveState() == false )
         {
             isPullingBow = false;
 
