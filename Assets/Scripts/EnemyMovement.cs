@@ -99,7 +99,12 @@ public class EnemyMovement : MonoBehaviour
 
     void MakeCorpses()
     {
-        enemyCapsuleCollider.isTrigger = true;
+        Collider2D[] colliderLibrary = GetComponentsInChildren<Collider2D>();
+
+        foreach(Collider2D childColliders in colliderLibrary)
+        {
+            childColliders.isTrigger = true;
+        }
 
     }
 

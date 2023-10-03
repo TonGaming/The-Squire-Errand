@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,13 +37,22 @@ public class EnemyTwoSidesDeath : MonoBehaviour
         if (enemyEdgeCollider.IsTouchingLayers(LayerMask.GetMask("Bullet")))
         {
             Vector2 enemyFacing = new Vector2(-enemyTransform.localScale.x, 1f);
-            enemyTransform.localScale = enemyFacing;
-        }
-        else if (enemyRigidbody2D.IsTouchingLayers(LayerMask.GetMask("Bullet")))
-        {
-            Vector2 enemyFacing = new Vector2(enemyTransform.localScale.x, 1f);
+
+            // hướng ngã xuống chính là hướng ngược lại (do bị bắn từ sau lưng)
             enemyTransform.localScale = enemyFacing;
             
+            
+        }
+        else if (enemyCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Bullet")))
+        {
+            Vector2 enemyFacing = new Vector2(enemyTransform.localScale.x, 1f);
+
+            // hướng ngã xuống là hướng đang nhìn về (do bị bắn từ trước mặt)
+            enemyTransform.localScale = enemyFacing;
+
+            
+
+
         }
     }
 }

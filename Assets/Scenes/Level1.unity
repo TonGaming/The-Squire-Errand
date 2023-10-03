@@ -38250,7 +38250,7 @@ GameObject:
   - component: {fileID: 734653198}
   m_Layer: 7
   m_Name: Ladder Tilemap
-  m_TagString: Untagged
+  m_TagString: Ladder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59647,50 +59647,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 385468339481505968, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 385468339481505968, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
-      propertyPath: DeathSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 25fb3128915f72141bb91a5d09adfd71, type: 3}
     - target: {fileID: 2499262167025614396, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: DeathSound
       value: 
       objectReference: {fileID: 1728140355}
-    - target: {fileID: 2928457798981290784, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
-      propertyPath: Loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2928457798981290784, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2928457798981290784, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2928457798981290784, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5166253313191871775, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_Name
       value: Ember (Player)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6330318200546482195, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7567765019175224958, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: bullet
       value: 
       objectReference: {fileID: 2091704570}
-    - target: {fileID: 7567765019175224958, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
-      propertyPath: DeathSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 25fb3128915f72141bb91a5d09adfd71, type: 3}
     - target: {fileID: 8150544943994868331, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_LocalPosition.x
       value: 45.39

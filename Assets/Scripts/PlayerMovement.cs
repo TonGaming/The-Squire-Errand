@@ -19,12 +19,12 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     // Khai báo biến Animator
     Animator myAnimator;
 
-
+    // Get Player Living State
+    PlayerDeathDetector playerDeathDetector;
 
     // Khai báo biến Collider2D
-    CircleCollider2D myCircleCollider2D;
-    CapsuleCollider2D myCapsuleCollider2D;
     BoxCollider2D myBoxCollider2D;
+    CapsuleCollider2D myCapsuleCollider2D;
 
     // Khai báo biến gravity scale của Ember
     [SerializeField] float baseGravity = 2f;
@@ -41,19 +41,30 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         myRigidbody2D.gravityScale = baseGravity;
         myAnimator = GetComponent<Animator>();
         myCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
-        myCircleCollider2D = GetComponent<CircleCollider2D>();
         myBoxCollider2D = GetComponent<BoxCollider2D>();
-        
 
+
+        playerDeathDetector = FindObjectOfType<PlayerDeathDetector>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        /**
+         * Note to self:
+         * Phải tạo biến isAlive để check, 
+         * nếu chỉ khoá PlayerInput.enabled = false lại không thôi thì các hàm tác động tới X axis và Y axis vẫn sẽ hoạt động
+         * từ đó ngăn cản các cú dead kick dc thực thi
+         */
+        if (playerDeathDetector.GetIsAliveState())
+        {
         Run();
         FlipSprite();
         groundCheck();
         ClimbLadder();
+        ClimbLadderDying();
+        }else { return; }
+
 
         //Debug.Log("Y velocity: " + moveInput.y * climbSpeed);
     }
@@ -92,14 +103,14 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
 
     void groundCheck()
     {
-        if (myCircleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (myBoxCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             isGrounded = true;
             // chạy animation landing sau đó mới sang animation action
             myAnimator.SetBool("isJumping", false);
             myAnimator.SetBool("isClimbing", false);
         }
-        else if (!myCircleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground", "Ladder")))
+        else if (!myBoxCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground", "Ladder")))
         {
             isClimbable = false;
             isGrounded = false;
@@ -115,7 +126,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     void Run()
     {
         // Tạo Vector lưu hướng di chuyển của ng chơi, gán giá trị X, dựa trên moveInput vào. Giá trị Y thì
-        //     giữ nguyên k thay đổi để tránh hiện tượng phản trọng lực, bay lơ lửng.
+        // giữ nguyên k thay đổi để tránh hiện tượng phản trọng lực, bay lơ lửng.
         Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, myRigidbody2D.velocity.y);
         myRigidbody2D.velocity = playerVelocity;
 
@@ -163,15 +174,6 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             myAnimator.SetBool("isHanging", false);
             myRigidbody2D.gravityScale = baseGravity;
         }
-        //else if (myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy")) && isClimbable)
-        //{
-        //    myRigidbody2D.gravityScale = baseGravity;
-        //    myRigidbody2D.velocity = new Vector2(10, 10f) ;
-        //    Debug.Log("YOU ARE DEADDDDD");
-        //    // trigger animation 
-        //    myAnimator.SetTrigger("isDeadLeft");
-
-        //}
         else { return; }
 
         // Laadder Animation
@@ -204,11 +206,18 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
 
     }
 
-
+    void ClimbLadderDying()
+    {
+        if (isClimbable && myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        {
+            myRigidbody2D.gravityScale = baseGravity;
+            isClimbable = false;
+        }
+    }
 
     /***
-     * Author: VDDung
      * Date: 08/09/2023
+     * Author: VDDung
      * Added Function Flip Sprite
      */
     void FlipSprite()
