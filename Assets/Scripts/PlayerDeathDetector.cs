@@ -67,16 +67,9 @@ public class PlayerDeathDetector : MonoBehaviour
 
             // chạy âm thanh khi chết 
             DeathSound.Play();
-
-
-
-            // khai báo mảng chứa tất cả các collider của parent
-
-
+            
             // set isAlive 
             isAlive = false;
-
-
 
             // Chạy animation và deadKick tuỳ vào hướng va chạm(collider đc chạm)
             // Xử lý va chạm của CapsuleCollider2D của player với enemy

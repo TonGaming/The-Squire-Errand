@@ -8,7 +8,10 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float climbSpeed = 3f;
     [SerializeField] float jumpForce = 8f;
-    //[SerializeField] float volume = 1f;
+
+
+    [SerializeField] AudioSource BouncingSounds;
+
 
     // Giá trị nhập vào từ bàn phím, thường là 1, -1 ở mỗi trục
     Vector2 moveInput;
@@ -58,18 +61,28 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
          */
         if (playerDeathDetector.GetIsAliveState())
         {
-        Run();
-        FlipSprite();
-        groundCheck();
-        ClimbLadder();
-        ClimbLadderDying();
-        }else { return; }
+            Run();
+            FlipSprite();
+            groundCheck();
+            ClimbLadder();
+            ClimbLadderDying();
+        }
+        else { return; }
 
 
         //Debug.Log("Y velocity: " + moveInput.y * climbSpeed);
     }
 
-    
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        Collider2D playerCollider = other.otherCollider;
+
+        if (other.gameObject.CompareTag("Mushroom") && playerCollider is BoxCollider2D)
+        {
+            BouncingSounds.Play();
+            Debug.Log("Bouncing audio has been played");
+        }
+    }
 
     void OnMove(InputValue value) // Luôn phải tuân thủ tên Hàm là Pascal Case
     {
@@ -93,13 +106,6 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             return;
         }
     }
-
-    //void OnFire(InputValue value)
-    //{
-
-    //    Instantiate(bullet, myGun.position, transform.rotation);
-
-    //}
 
     void groundCheck()
     {
@@ -214,6 +220,8 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             isClimbable = false;
         }
     }
+
+
 
     /***
      * Date: 08/09/2023

@@ -53,7 +53,7 @@ public class PlayerAttack : MonoBehaviour
 
     void MoveCheck()
     {
-        if (Mathf.Abs(playerRigidbody.velocity.x) >= Mathf.Epsilon && Mathf.Abs(playerRigidbody.velocity.y) >= Mathf.Epsilon)
+        if (Mathf.Abs(playerRigidbody.velocity.x) >= Mathf.Epsilon || Mathf.Abs(playerRigidbody.velocity.y) >= Mathf.Epsilon)
         {
             isMoving = true;
         }
