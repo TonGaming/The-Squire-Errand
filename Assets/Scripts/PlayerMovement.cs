@@ -9,7 +9,10 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     [SerializeField] float climbSpeed = 3f;
     [SerializeField] float jumpForce = 8f;
 
+    // Khai báo biến gravity scale của Ember
+    [SerializeField] float baseGravity = 2f;
 
+    [SerializeField] AudioSource FootstepsSounds;
     [SerializeField] AudioSource BouncingSounds;
 
 
@@ -29,13 +32,12 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     BoxCollider2D myBoxCollider2D;
     CapsuleCollider2D myCapsuleCollider2D;
 
-    // Khai báo biến gravity scale của Ember
-    [SerializeField] float baseGravity = 2f;
+
 
     // status flag
     bool isGrounded = true;
     bool isClimbable = true;
-
+    bool isWalking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +61,9 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
          * nếu chỉ khoá PlayerInput.enabled = false lại không thôi thì các hàm tác động tới X axis và Y axis vẫn sẽ hoạt động
          * từ đó ngăn cản các cú dead kick dc thực thi
          */
+
+        FootstepsSoundPlayer();
+
         if (playerDeathDetector.GetIsAliveState())
         {
             Run();
@@ -66,6 +71,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             groundCheck();
             ClimbLadder();
             ClimbLadderDying();
+            
         }
         else { return; }
 
@@ -141,13 +147,17 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             // Nếu trị tuyệt đối của vận tốc > Epsi thì chạy animation running
             if (Mathf.Abs(myRigidbody2D.velocity.x) >= Mathf.Epsilon)
             {
+                
                 myAnimator.SetBool("isRunning", true);
                 myAnimator.SetBool("isIdling", false);
+
+                
             }
             else // còn nếu không(đứng im) thì cho đứng im = cách tắt animation running đi 
             {
                 myAnimator.SetBool("isRunning", false);
                 myAnimator.SetBool("isIdling", true);
+                
             }
 
         }
@@ -155,6 +165,21 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
          * bool isRunning = enemyRigidbody.velocity.x >= Mathf.Epsilon;
          * myAnimator.SetBool("isRunning", isRunning); true false dựa theo biến bool luôn 
          */
+    }
+
+    void FootstepsSoundPlayer()
+    {
+        if (isGrounded && Mathf.Abs(myRigidbody2D.velocity.x) >= 1 && isWalking == false )
+        {
+            isWalking = true;
+            FootstepsSounds.Play();
+
+        }
+        else if (!isGrounded || !(Mathf.Abs(myRigidbody2D.velocity.x) >= 1) )
+        {
+            FootstepsSounds.Stop();
+            isWalking = false;
+        }
     }
 
     void ClimbLadder()

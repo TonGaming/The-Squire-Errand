@@ -13,11 +13,11 @@ public class Bullet : MonoBehaviour
     Rigidbody2D bulletRigidbody;
     CapsuleCollider2D bulletCapsuleCollider;
     Transform bulletTransform;
-    SpriteRenderer bulletSpriteRenderer;
+
 
     AudioSource bulletAudioSource;
     [SerializeField] AudioClip arrowImpact;
-    [SerializeField] float volume = .5f;
+    [SerializeField] float volume = .2f;
 
     Vector2 bulletTrajectory;
     Vector2 bulletDirection;
@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
         bulletTransform = GetComponent<Transform>();
         bulletAudioSource = GetComponent<AudioSource>();
         bulletCapsuleCollider = GetComponent<CapsuleCollider2D>();
-        bulletSpriteRenderer = GetComponent<SpriteRenderer>();
+
 
         // Get ra player ở một script playermovement
         myPlayer = FindObjectOfType<PlayerMovement>();
