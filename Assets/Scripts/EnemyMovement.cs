@@ -84,7 +84,7 @@ public class EnemyMovement : MonoBehaviour
         // nếu ăn đạn và vẫn sống thì ...
         if (enemyRigidbody.IsTouchingLayers(LayerMask.GetMask("Bullet")) && isAlive)
         {
-            // Destroy(gameObject, delayTime); // huỷ object
+            
 
             Invoke("MakeCorpses", 0.1f);
 

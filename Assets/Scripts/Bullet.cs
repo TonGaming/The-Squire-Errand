@@ -50,17 +50,11 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BulletHeading();
+        ArrowHeading();
 
     }
 
-
-    void BulletHeading()
-    {
-        ArrowFiring();
-    }
-
-    void ArrowFiring()
+    void ArrowHeading()
     {
         bulletRigidbody.velocity = bulletTrajectory; // bắn đạn ra
         bulletTransform.localScale = bulletDirection; // đạn quay hướng nào
@@ -78,7 +72,7 @@ public class Bullet : MonoBehaviour
             bulletCapsuleCollider.isTrigger = true;
 
             // hide the arrow away for a while 
-            Vector2 bulletHiding = new (10f, 0f);
+            Vector2 bulletHiding = new (-365f, -365f);
             bulletTransform.position = bulletHiding;
 
             // destroy the bullet after bullet's audio have been played
