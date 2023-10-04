@@ -12,7 +12,9 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     // Khai báo biến gravity scale của Ember
     [SerializeField] float baseGravity = 2f;
 
+    // Khai báo âm thanh cho nhân vật
     [SerializeField] AudioSource FootstepsSounds;
+    [SerializeField] AudioSource ClimbingSounds;
     [SerializeField] AudioSource BouncingSounds;
 
 
@@ -29,7 +31,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     PlayerDeathDetector playerDeathDetector;
 
     // Khai báo biến Collider2D
-    BoxCollider2D myBoxCollider2D;
+    CircleCollider2D myCircleCollider2D;
     CapsuleCollider2D myCapsuleCollider2D;
 
 
@@ -38,7 +40,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     bool isGrounded = true;
     bool isClimbable = true;
     bool isWalking = false;
-
+    bool isClimbing = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +48,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         myRigidbody2D.gravityScale = baseGravity;
         myAnimator = GetComponent<Animator>();
         myCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
-        myBoxCollider2D = GetComponent<BoxCollider2D>();
+        myCircleCollider2D = GetComponent<CircleCollider2D>();
 
 
         playerDeathDetector = FindObjectOfType<PlayerDeathDetector>();
@@ -63,6 +65,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
          */
 
         FootstepsSoundPlayer();
+        //ClimbLadderSoundPlayer();
 
         if (playerDeathDetector.GetIsAliveState())
         {
@@ -70,7 +73,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             FlipSprite();
             groundCheck();
             ClimbLadder();
-            ClimbLadderDying();
+            
             
         }
         else { return; }
@@ -115,14 +118,14 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
 
     void groundCheck()
     {
-        if (myBoxCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (myCircleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             isGrounded = true;
             // chạy animation landing sau đó mới sang animation action
             myAnimator.SetBool("isJumping", false);
             myAnimator.SetBool("isClimbing", false);
         }
-        else if (!myBoxCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground", "Ladder")))
+        else if (!myCircleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground", "Ladder")))
         {
             isClimbable = false;
             isGrounded = false;
@@ -169,13 +172,16 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
 
     void FootstepsSoundPlayer()
     {
-        if (isGrounded && Mathf.Abs(myRigidbody2D.velocity.x) >= 1 && isWalking == false )
+        if (isGrounded && Mathf.Abs(myRigidbody2D.velocity.x) >= 1 && isWalking == false && playerDeathDetector.GetIsAliveState() )
         {
             isWalking = true;
             FootstepsSounds.Play();
 
         }
-        else if (!isGrounded || !(Mathf.Abs(myRigidbody2D.velocity.x) >= 1) )
+        else if (!isGrounded 
+            || !(Mathf.Abs(myRigidbody2D.velocity.x) >= 1) 
+            || (Mathf.Abs(myRigidbody2D.velocity.y) >= Mathf.Epsilon)
+            || playerDeathDetector.GetIsAliveState() == false)
         {
             FootstepsSounds.Stop();
             isWalking = false;
@@ -223,28 +229,25 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         }
         else { return; }
 
-
-
-        //else if (!isClimbable && !isGrounded)
-        //{
-        //    myAnimator.SetBool("isClimbing", false);
-        //    myAnimator.SetBool("isRunning", false);
-
-        //    myAnimator.SetTrigger("takeOff");
-        //    myAnimator.SetBool("isJumping", true);
-        //}
-
-
     }
 
-    void ClimbLadderDying()
+    void ClimbLadderSoundPlayer()
     {
-        if (isClimbable && myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        if (isClimbable && Mathf.Abs(myRigidbody2D.velocity.y) >= Mathf.Epsilon && isClimbing == false)
         {
-            myRigidbody2D.gravityScale = baseGravity;
-            isClimbable = false;
+            isClimbing = true;
+            ClimbingSounds.Play();
+            Debug.Log("Dung dep trai start treo thang");
+        }
+        else if (!isClimbable || !(Mathf.Abs(myRigidbody2D.velocity.y) >= Mathf.Epsilon) || playerDeathDetector.GetIsAliveState() == false || isGrounded)
+        {
+            isClimbing = false;
+            ClimbingSounds.Stop();
+            Debug.Log("Dung dep trai stop treo thang");
         }
     }
+
+    
 
 
 

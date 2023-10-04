@@ -111,7 +111,7 @@ public class PlayerDeathDetector : MonoBehaviour
                 // trigger animation
                 myAnimator.SetTrigger("isDeadFront");
             }
-            else if (playerCollider is BoxCollider2D)
+            else if (playerCollider is CircleCollider2D)
             {
                 myRigidbody2D.velocity = new Vector2(playerTransform.localScale.x * 0, deadKickForce + 5f);
 
