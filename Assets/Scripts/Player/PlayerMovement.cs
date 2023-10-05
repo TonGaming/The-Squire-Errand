@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
          */
 
         FootstepsSoundPlayer();
-        //ClimbLadderSoundPlayer();
+        ClimbLadderSoundPlayer();
 
         if (playerDeathDetector.GetIsAliveState())
         {
@@ -86,10 +86,9 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     {
         Collider2D playerCollider = other.otherCollider;
 
-        if (other.gameObject.CompareTag("Mushroom") && playerCollider is BoxCollider2D)
+        if (other.gameObject.CompareTag("Mushroom") && playerCollider is CircleCollider2D)
         {
             BouncingSounds.Play();
-            Debug.Log("Bouncing audio has been played");
         }
     }
 
@@ -180,11 +179,12 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         }
         else if (!isGrounded 
             || !(Mathf.Abs(myRigidbody2D.velocity.x) >= 1) 
-            || (Mathf.Abs(myRigidbody2D.velocity.y) >= Mathf.Epsilon)
+            
             || playerDeathDetector.GetIsAliveState() == false)
         {
             FootstepsSounds.Stop();
             isWalking = false;
+
         }
     }
 
@@ -233,13 +233,18 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
 
     void ClimbLadderSoundPlayer()
     {
-        if (isClimbable && Mathf.Abs(myRigidbody2D.velocity.y) >= Mathf.Epsilon && isClimbing == false)
+        if (isClimbable && Mathf.Abs(myRigidbody2D.velocity.y) >= Mathf.Epsilon
+            
+            && isClimbing == false)
         {
             isClimbing = true;
             ClimbingSounds.Play();
             Debug.Log("Dung dep trai start treo thang");
         }
-        else if (!isClimbable || !(Mathf.Abs(myRigidbody2D.velocity.y) >= Mathf.Epsilon) || playerDeathDetector.GetIsAliveState() == false || isGrounded)
+        else if (!isClimbable || !(Mathf.Abs(myRigidbody2D.velocity.y) >= Mathf.Epsilon) 
+            || playerDeathDetector.GetIsAliveState() == false 
+
+            )
         {
             isClimbing = false;
             ClimbingSounds.Stop();
@@ -269,6 +274,14 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         }
     }
 
+    public bool GetClimbableState()
+    {
+        return isClimbable;
+    }
 
+    public bool GetGroundedState()
+    {
+        return isGrounded;
+    }
 
 }

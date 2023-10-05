@@ -10,6 +10,7 @@ public class PlayerAttack : MonoBehaviour
     Rigidbody2D playerRigidbody;
     Animator playerAnimator;
 
+    PlayerMovement playerMovement;
     PlayerDeathDetector playerDeathDetector;
 
     // Get Gun and Bullet
@@ -40,6 +41,7 @@ public class PlayerAttack : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
 
         playerDeathDetector = FindObjectOfType<PlayerDeathDetector>();
+        playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -67,7 +69,10 @@ public class PlayerAttack : MonoBehaviour
 
     void PullBow()
     {
-        if (Input.GetKey(KeyCode.Mouse0) && isMoving == false && isPullingBow == false)
+        if (Input.GetKey(KeyCode.Mouse0) 
+            && isMoving == false 
+            && isPullingBow == false
+            && (playerMovement.GetClimbableState() == false || playerMovement.GetGroundedState() == true))
         {
             isPullingBow = true;
 
@@ -91,15 +96,17 @@ public class PlayerAttack : MonoBehaviour
 
     void ShootArrow()
     {
-        if (isPullingBow)
+        if (isPullingBow && playerMovement.GetGroundedState() == true) 
         {
             Instantiate(bullet, myGun.position, transform.rotation); // spawn arrow
             playerAudioSource.PlayOneShot(arrowWhizzlingSound, volume); // chạy âm thanh xé gió
         }
-        else
+        // nếu chạm thang nhưng k chạm sàn - meaning đang bám thang hoặc đang trèo thang thì huỷ luôn k bắn 
+        else if (playerMovement.GetClimbableState() == true && playerMovement.GetGroundedState() == false )
         {
             return;
         }
+        else { return; }
     }
 
     void GoBackToIdling()
