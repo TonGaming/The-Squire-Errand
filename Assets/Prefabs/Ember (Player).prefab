@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 2499262167025614396}
   - component: {fileID: 2928457798981290784}
   - component: {fileID: 1482076492553993018}
-  - component: {fileID: 8514233191545176377}
+  - component: {fileID: 2928246154218161383}
   m_Layer: 8
   m_Name: Ember (Player)
   m_TagString: Player
@@ -254,9 +254,10 @@ MonoBehaviour:
   moveSpeed: 5
   climbSpeed: 3
   jumpForce: 10
-  bouncingSound: {fileID: 8300000, guid: d8957a8a8d97f0847bc5f1c0c13be41c, type: 3}
-  volume: 1
   baseGravity: 2
+  FootstepsSounds: {fileID: 0}
+  ClimbingSounds: {fileID: 0}
+  BouncingSounds: {fileID: 0}
 --- !u!114 &7567765019175224958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,7 +274,7 @@ MonoBehaviour:
   myGun: {fileID: 925105723516224042}
   arrowDrawingSound: {fileID: 8300000, guid: e36225bd32878384a972d4fefa338a30, type: 3}
   arrowWhizzlingSound: {fileID: 8300000, guid: f01434b55e77d0d45bf8882676de45e4, type: 3}
-  volume: 1
+  volume: 0.2
 --- !u!114 &2499262167025614396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,8 +434,8 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!61 &8514233191545176377
-BoxCollider2D:
+--- !u!58 &2928246154218161383
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -465,16 +466,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.041633606, y: -0.43852377}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: -0.024202943, y: -0.3577525}
   serializedVersion: 2
-  m_Size: {x: 0.40605164, y: 0.12295246}
-  m_EdgeRadius: 0
+  m_Radius: 0.1502462
