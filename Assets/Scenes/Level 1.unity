@@ -166,7 +166,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7332b5c57204b2444b702fc338dc385a, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 0.785
   m_Pitch: 1
   Loop: 1
@@ -20526,7 +20526,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.63, y: -8.36, z: -10}
+  m_LocalPosition: {x: -11.46, y: -8.36, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21896,7 +21896,7 @@ Transform:
   m_GameObject: {fileID: 1539303725}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.420981, y: -11.894075, z: -11.009704}
+  m_LocalPosition: {x: -11.250981, y: -11.894075, z: -11.009704}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22219,7 +22219,7 @@ Transform:
   m_GameObject: {fileID: 1764610908}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.420981, y: -11.894075, z: -11.009704}
+  m_LocalPosition: {x: -11.250981, y: -11.894075, z: -11.009704}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -33217,7 +33217,7 @@ Transform:
   m_GameObject: {fileID: 2041594299}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.420981, y: -10.464075, z: -11.009704}
+  m_LocalPosition: {x: -11.250981, y: -10.464075, z: -11.009704}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34226,7 +34226,7 @@ PrefabInstance:
       objectReference: {fileID: 2091704570}
     - target: {fileID: 8150544943994868331, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.63
+      value: -11.46
       objectReference: {fileID: 0}
     - target: {fileID: 8150544943994868331, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_LocalPosition.y

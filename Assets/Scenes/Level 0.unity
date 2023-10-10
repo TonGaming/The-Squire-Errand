@@ -166,7 +166,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7332b5c57204b2444b702fc338dc385a, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 0.785
   m_Pitch: 1
   Loop: 1
@@ -11166,7 +11166,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.61, y: -8.27, z: -10}
+  m_LocalPosition: {x: -15.585154, y: -1.1710155, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12718,7 +12718,7 @@ Transform:
   m_GameObject: {fileID: 1539303725}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.819018, y: -11.804076, z: -11.009704}
+  m_LocalPosition: {x: -15.870981, y: -4.7040753, z: -11.009704}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12975,7 +12975,7 @@ Transform:
   m_GameObject: {fileID: 1764610908}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.819018, y: -11.804076, z: -11.009704}
+  m_LocalPosition: {x: -15.870981, y: -4.7040753, z: -11.009704}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17660,15 +17660,15 @@ Tilemap:
   - m_RefCount: 32
     m_Data:
       e00: -1
-      e01: -0.00000008742278
-      e02: -0
+      e01: 0
+      e02: 0
       e03: 0
-      e10: 0.00000008742278
+      e10: 0
       e11: -1
       e12: 0
       e13: 0
       e20: 0
-      e21: -0
+      e21: 0
       e22: 1
       e23: 0
       e30: 0
@@ -18490,7 +18490,7 @@ Transform:
   m_GameObject: {fileID: 2041594299}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.819018, y: -10.374076, z: -11.009704}
+  m_LocalPosition: {x: -15.870981, y: -3.274075, z: -11.009704}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19237,11 +19237,11 @@ PrefabInstance:
       objectReference: {fileID: 2091704570}
     - target: {fileID: 8150544943994868331, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.61
+      value: -16.08
       objectReference: {fileID: 0}
     - target: {fileID: 8150544943994868331, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.27
+      value: -1.17
       objectReference: {fileID: 0}
     - target: {fileID: 8150544943994868331, guid: 1abf9cf768aa4134098693ac27cd0083, type: 3}
       propertyPath: m_LocalPosition.z
