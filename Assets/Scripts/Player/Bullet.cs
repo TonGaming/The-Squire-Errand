@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
 
     AudioSource bulletAudioSource;
     [SerializeField] AudioClip arrowImpact;
-    [SerializeField] float volume = .2f;
+    float volume = .5f;
 
     Vector2 bulletTrajectory;
     Vector2 bulletDirection;

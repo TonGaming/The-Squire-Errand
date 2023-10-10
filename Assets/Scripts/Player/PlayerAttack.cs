@@ -28,7 +28,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] AudioClip arrowWhizzlingSound;
 
 
-    [SerializeField] float volume = 0.2f;
+    float volume = 0.5f;
     float delayTime = 1.2f;
 
 

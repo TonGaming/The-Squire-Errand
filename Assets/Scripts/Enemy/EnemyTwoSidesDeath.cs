@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyTwoSidesDeath : MonoBehaviour
 {
-    //[SerializeField] float delayTime = 1f;
+    //[SerializeField] float LevelLoadDelay = 1f;
 
     CapsuleCollider2D enemyCapsuleCollider;
     Transform enemyTransform;

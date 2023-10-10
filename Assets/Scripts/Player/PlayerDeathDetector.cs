@@ -60,7 +60,7 @@ public class PlayerDeathDetector : MonoBehaviour
             myPlayerInput.enabled = false;
             myAnimator.SetBool("isJumping", false);
             myAnimator.SetBool("isRunning", false);
-            Invoke("reloadScene", waitTillReload);
+            Invoke("reloadSceneOnDead", waitTillReload);
 
             // chỉnh lại trọng lực
             myRigidbody2D.gravityScale = baseGravity;
@@ -149,8 +149,10 @@ public class PlayerDeathDetector : MonoBehaviour
     }
 
 
-    void reloadScene()
+    void reloadSceneOnDead()
     {
-        SceneManager.LoadScene("Level1");
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+
     }
 }
