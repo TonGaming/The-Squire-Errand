@@ -239,7 +239,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         {
             isClimbing = true;
             ClimbingSounds.Play();
-            Debug.Log("Dung dep trai start treo thang");
+
         }
         else if (!isClimbable || !(Mathf.Abs(myRigidbody2D.velocity.y) >= Mathf.Epsilon) 
             || playerDeathDetector.GetIsAliveState() == false 
@@ -248,7 +248,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         {
             isClimbing = false;
             ClimbingSounds.Stop();
-            Debug.Log("Dung dep trai stop treo thang");
+
         }
     }
 

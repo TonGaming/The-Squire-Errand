@@ -7,7 +7,7 @@ public class GameSession : MonoBehaviour
 {
     [SerializeField] float reloadSceneDelay = 2f;
     [SerializeField] float playerLives = 3;
-
+    [SerializeField] float playerCoin = 0;
 
 
 
@@ -45,6 +45,13 @@ public class GameSession : MonoBehaviour
         }
     }
 
+    public void ProcessPlayerCoin()
+    {
+        playerCoin++; 
+
+        
+    }
+
     void MinusLives()
     {
         // trừ một máu
@@ -75,5 +82,6 @@ public class GameSession : MonoBehaviour
         int sceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(sceneBuildIndex);
         playerLives = 3;
+        playerCoin = 0;
     }
 }
