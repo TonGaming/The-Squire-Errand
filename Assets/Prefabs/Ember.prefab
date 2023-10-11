@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 2928246154218161383}
   - component: {fileID: 8940275766535637103}
   m_Layer: 8
-  m_Name: Ember (Player)
+  m_Name: Ember
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

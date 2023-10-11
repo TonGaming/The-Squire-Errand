@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDeathDetector : MonoBehaviour
 {
-    [SerializeField] float waitTillReload = 1f;
+    //[SerializeField] float waitTillReload = 1f;
     //[SerializeField] float volume = 1f;
 
     [SerializeField] AudioSource DeathSound;
@@ -25,6 +25,9 @@ public class PlayerDeathDetector : MonoBehaviour
     CircleCollider2D myCircleCollider2D;
     EdgeCollider2D myEdgeCollider2D;
 
+    // Khai báo Game Session 
+    GameSession playerGameSession;
+
     // Khai báo lực đẩy khi chết
     [SerializeField] float deadKickForce = 10f;
     //[SerializeField] Vector2 deadKickToUp = new Vector2(0f, 10f);
@@ -39,6 +42,8 @@ public class PlayerDeathDetector : MonoBehaviour
         myCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
         myCircleCollider2D = GetComponent<CircleCollider2D>();
         myEdgeCollider2D = GetComponent<EdgeCollider2D>();
+
+        playerGameSession = FindObjectOfType<GameSession>();
     }
 
     void Update()
@@ -60,7 +65,10 @@ public class PlayerDeathDetector : MonoBehaviour
             myPlayerInput.enabled = false;
             myAnimator.SetBool("isJumping", false);
             myAnimator.SetBool("isRunning", false);
-            Invoke("reloadSceneOnDead", waitTillReload);
+
+
+            // Gọi tới hàm GameSession để trừ PLayerLives đi 
+            playerGameSession.ProcessPlayerDeath();
 
             // chỉnh lại trọng lực
             myRigidbody2D.gravityScale = baseGravity;
@@ -149,10 +157,5 @@ public class PlayerDeathDetector : MonoBehaviour
     }
 
 
-    void reloadSceneOnDead()
-    {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex);
-
-    }
+    
 }

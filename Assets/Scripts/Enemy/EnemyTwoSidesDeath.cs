@@ -40,8 +40,9 @@ public class EnemyTwoSidesDeath : MonoBehaviour
 
             // hướng ngã xuống chính là hướng ngược lại (do bị bắn từ sau lưng)
             enemyTransform.localScale = enemyFacing;
-            
-            
+
+            enemyEdgeCollider.enabled = false;
+            enemyCapsuleCollider.enabled = false;
         }
         else if (enemyCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Bullet")))
         {
@@ -50,9 +51,10 @@ public class EnemyTwoSidesDeath : MonoBehaviour
             // hướng ngã xuống là hướng đang nhìn về (do bị bắn từ trước mặt)
             enemyTransform.localScale = enemyFacing;
 
-            
 
 
+            enemyEdgeCollider.enabled = false;
+            enemyCapsuleCollider.enabled = false;
         }
     }
 }
