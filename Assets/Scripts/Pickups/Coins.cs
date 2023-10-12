@@ -28,6 +28,7 @@ public class Coins : MonoBehaviour
 
             // chạy audio
             coinAudioSource.PlayOneShot(CoinPickupSound);
+            // PlayClipAtPoint sẽ không bị mất đi khi huỷ gameObject 
 
             // tắt collider đi để ngăn âm thanh chạy nhiều lần
             coinCircleCollider.enabled = false;
