@@ -87,7 +87,7 @@ public class GameSession : MonoBehaviour
         if (playerCurrentScore < 10)
         {
             // để đoạn này vào trong hàm thì sẽ performant hơn là để ở update
-            coinText.text = "00" + playerCurrentScore.ToString();
+            coinText.text = "000" + playerCurrentScore.ToString();
 
         }
         else if (playerCurrentScore < 100)

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ public class Health : MonoBehaviour
     CircleCollider2D heartsCircleCollider;
 
     [SerializeField] AudioClip heartsPickupSound;
-    bool isHealing = false;
+    bool isCollected = false;
 
     [SerializeField] Vector2 heartsVelocity = new Vector2(0f, 3f);
 
@@ -34,7 +34,7 @@ public class Health : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && isHealing == false)
+        if (collision.gameObject.CompareTag("Player") && isCollected == false )
         {
             gameSession.AddHealth();
 
@@ -44,10 +44,10 @@ public class Health : MonoBehaviour
 
             StartCoroutine(KillHearts());
 
-            isHealing = true;
-            Invoke("SetIsHealing", .2f);
+            isCollected = true;
 
-            heartsCircleCollider.enabled = false;
+            // tắt đi để ngăn kích hoạt pickups nhiều lần
+            gameObject.SetActive(false);
         }
         else
         {
@@ -55,10 +55,6 @@ public class Health : MonoBehaviour
         }
     }
 
-    void SetIsHealing()
-    {
-        isHealing = false;
-    }
 
     IEnumerator KillHearts()
     {

@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 4608092334789238822}
   - component: {fileID: 5913920767866128488}
   - component: {fileID: 6430524107232737971}
-  - component: {fileID: 2784717606058483200}
   - component: {fileID: 1789939863792712137}
+  - component: {fileID: 6790724659851204145}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -171,10 +171,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3096f1ee693ddc04e9ccbd563b3a2cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CoinPickupSound: {fileID: 8300000, guid: 42a3cf1bd0a944e4a80a09fe6fae4110, type: 3}
+  coinPickupSound: {fileID: 8300000, guid: 42a3cf1bd0a944e4a80a09fe6fae4110, type: 3}
+  volume: 0.5
   destroyDelay: 0.5
   coinVelocity: {x: 0, y: 3}
---- !u!82 &2784717606058483200
+--- !u!50 &1789939863792712137
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7120826262590114656}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!82 &6790724659851204145
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,7 +214,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.452
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -270,30 +298,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!50 &1789939863792712137
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7120826262590114656}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0

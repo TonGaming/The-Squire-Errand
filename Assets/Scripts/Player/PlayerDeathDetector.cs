@@ -21,9 +21,7 @@ public class PlayerDeathDetector : MonoBehaviour
     Animator myAnimator;
     Rigidbody2D myRigidbody2D;
     Transform playerTransform;
-    CapsuleCollider2D myCapsuleCollider2D;
-    CircleCollider2D myCircleCollider2D;
-    EdgeCollider2D myEdgeCollider2D;
+
 
     // Khai báo Game Session 
     GameSession playerGameSession;
@@ -39,9 +37,7 @@ public class PlayerDeathDetector : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         myRigidbody2D = GetComponent<Rigidbody2D>();
         playerTransform = GetComponent<Transform>();
-        myCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
-        myCircleCollider2D = GetComponent<CircleCollider2D>();
-        myEdgeCollider2D = GetComponent<EdgeCollider2D>();
+
 
         playerGameSession = FindObjectOfType<GameSession>();
     }

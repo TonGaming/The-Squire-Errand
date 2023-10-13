@@ -50,7 +50,6 @@ GameObject:
   - component: {fileID: 2499262167025614396}
   - component: {fileID: 2928457798981290784}
   - component: {fileID: 1482076492553993018}
-  - component: {fileID: 2928246154218161383}
   - component: {fileID: 8940275766535637103}
   m_Layer: 8
   m_Name: Ember
@@ -275,7 +274,6 @@ MonoBehaviour:
   myGun: {fileID: 925105723516224042}
   arrowDrawingSound: {fileID: 8300000, guid: e36225bd32878384a972d4fefa338a30, type: 3}
   arrowWhizzlingSound: {fileID: 8300000, guid: f01434b55e77d0d45bf8882676de45e4, type: 3}
-  volume: 0.2
 --- !u!114 &2499262167025614396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,7 +286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b151b3d3f9de82640bc926555bceb774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTillReload: 2
   DeathSound: {fileID: 0}
   deadKickForce: 10
 --- !u!82 &2928457798981290784
@@ -435,41 +432,6 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!58 &2928246154218161383
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5166253313191871775}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: b2c23b2cb6b97d943989a54de3b95147, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.024202943, y: -0.3577525}
-  serializedVersion: 2
-  m_Radius: 0.1502462
 --- !u!58 &8940275766535637103
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -502,6 +464,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.024202943, y: -0.3577525}
+  m_Offset: {x: -0.03, y: -0.23}
   serializedVersion: 2
-  m_Radius: 0.1502462
+  m_Radius: 0.28644943

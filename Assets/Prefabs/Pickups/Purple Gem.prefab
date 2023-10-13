@@ -294,6 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3096f1ee693ddc04e9ccbd563b3a2cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CoinPickupSound: {fileID: 8300000, guid: 42a3cf1bd0a944e4a80a09fe6fae4110, type: 3}
+  coinPickupSound: {fileID: 8300000, guid: 42a3cf1bd0a944e4a80a09fe6fae4110, type: 3}
+  volume: 0.5
   destroyDelay: 0.5
   coinVelocity: {x: 0, y: 3}
