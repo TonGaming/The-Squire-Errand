@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class GameSession : MonoBehaviour
@@ -15,9 +16,7 @@ public class GameSession : MonoBehaviour
 
     // Số máu trong game Session
     [SerializeField] float playerCurrentLives;
-    [SerializeField] float playerCurrentCoins;
-
-
+    [SerializeField] float playerCurrentScore;
 
     // Số máu trong game Session
     [SerializeField] Image healthBar;
@@ -32,7 +31,7 @@ public class GameSession : MonoBehaviour
         // Singleton Pattern
 
         playerCurrentLives = playerStartingHealth;
-        playerCurrentCoins = playerStartingCoin;
+        playerCurrentScore = playerStartingCoin;
 
         // FindObjectsOfType sẽ là tìm ra một mảng tổng hợp tất cả những object đó
         int numGameSession = FindObjectsOfType<GameSession>().Length;
@@ -54,8 +53,8 @@ public class GameSession : MonoBehaviour
         healthBar.fillAmount = playerCurrentLives * 0.1f;
 
 
-        // Hiện UI số coin = playerCurrentCoins
-        coinText.text = "0" + playerCurrentCoins.ToString();
+        // Hiện UI số coin = playerCurrentScore
+        coinText.text = "0" + playerCurrentScore.ToString();
     }
 
     void Update()
@@ -73,26 +72,53 @@ public class GameSession : MonoBehaviour
         }
         else
         {
-            ResetGameSession();
+            // trừ nốt trái tim cuối cùng
+            playerCurrentLives--;
+            healthBar.fillAmount = playerCurrentLives * 0.1f;
+
+            Invoke("ResetGameSession", reloadSceneDelay);
         }
     }
 
-    public void ProcessPlayerCoin()
+    public void ProcessPlayerScore()
     {
-        playerCurrentCoins++;
 
-        if (playerCurrentCoins < 10)
+
+        if (playerCurrentScore < 10)
         {
             // để đoạn này vào trong hàm thì sẽ performant hơn là để ở update
-            coinText.text = "0" + playerCurrentCoins.ToString();
+            coinText.text = "00" + playerCurrentScore.ToString();
+
+        }
+        else if (playerCurrentScore < 100)
+        {
+            coinText.text = "0" + playerCurrentScore.ToString();
 
         }
         else
         {
-            coinText.text = playerCurrentCoins.ToString();
-
+            // chỉ chạy một lần khi được gọi tới chứ nếu để trong update thì nó chạy theo frame
+            coinText.text = playerCurrentScore.ToString();
         }
 
+    }
+
+    public void AddToScore(int pointsToAdd)
+    {
+        playerCurrentScore += pointsToAdd;
+    }
+
+    public void AddHealth()
+    {
+        if (playerCurrentLives < 10)
+        {
+            IncreaseLives();
+            return;
+        }
+        else
+        {
+            return;
+        }
     }
 
     void MinusLives()
@@ -100,9 +126,15 @@ public class GameSession : MonoBehaviour
         // chỉ thao tác với playerCurrentLives, UI sẽ tự thay đổi theo
         playerCurrentLives--;
 
-        StartCoroutine(ReloadLevels());
-
         // Hiện UI thanh máu dựa trên số playerCurrentLives trong Game Session
+        healthBar.fillAmount = playerCurrentLives * 0.1f;
+
+        StartCoroutine(ReloadLevels());
+    }
+
+    void IncreaseLives()
+    {
+        playerCurrentLives++;
         healthBar.fillAmount = playerCurrentLives * 0.1f;
     }
 
@@ -126,19 +158,25 @@ public class GameSession : MonoBehaviour
         SceneManager.LoadScene(sceneBuildIndex);
 
         playerCurrentLives = playerStartingHealth;
-        playerCurrentCoins = playerStartingCoin;
+        playerCurrentScore = playerStartingCoin;
 
         healthBar.fillAmount = playerCurrentLives * 0.1f;
-        if (playerCurrentCoins < 10)
+
+        if (playerCurrentScore < 10)
         {
             // để đoạn này vào trong hàm thì sẽ performant hơn là để ở update
-            coinText.text = "0" + playerCurrentCoins.ToString();
+            coinText.text = "00" + playerCurrentScore.ToString();
+
+        }
+        else if (playerCurrentScore < 100)
+        {
+            coinText.text = "0" + playerCurrentScore.ToString();
 
         }
         else
         {
-            coinText.text = playerCurrentCoins.ToString();
-
+            // chỉ chạy một lần khi được gọi tới chứ nếu để trong update thì nó chạy theo frame
+            coinText.text = playerCurrentScore.ToString();
         }
     }
 }

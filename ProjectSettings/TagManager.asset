@@ -12,6 +12,7 @@ TagManager:
   - Ladder
   - Mushroom
   - Interactable
+  - HealthBar
   layers:
   - Default
   - TransparentFX

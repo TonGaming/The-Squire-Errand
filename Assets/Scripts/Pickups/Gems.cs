@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coins : MonoBehaviour
+public class Gems : MonoBehaviour
 {
-    [SerializeField] int coinValue = 10;
+    [SerializeField] int gemValue = 50;
 
 
 
@@ -19,7 +19,7 @@ public class Coins : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // cộng 1 vào persitent data player coin trong game session
-            FindObjectOfType<GameSession>().AddToScore(coinValue);
+            FindObjectOfType<GameSession>().AddToScore(gemValue);
 
             
         }
