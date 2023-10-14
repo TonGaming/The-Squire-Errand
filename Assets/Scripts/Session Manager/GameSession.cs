@@ -47,14 +47,14 @@ public class GameSession : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Start()
     {
         // Hiện UI thanh máu dựa trên số playerCurrentLives trong Game Session
         healthBar.fillAmount = playerCurrentLives * 0.1f;
 
 
         // Hiện UI số coin = playerCurrentScore
-        coinText.text = "0" + playerCurrentScore.ToString();
+        coinText.text = "000";
     }
 
     void Update()
@@ -80,32 +80,19 @@ public class GameSession : MonoBehaviour
         }
     }
 
-    public void ProcessPlayerScore()
+    public void AddToScore(int pointsToAdd)
     {
+        playerCurrentScore += pointsToAdd;
 
-
-        if (playerCurrentScore < 10)
-        {
-            // để đoạn này vào trong hàm thì sẽ performant hơn là để ở update
-            coinText.text = "000" + playerCurrentScore.ToString();
-
-        }
-        else if (playerCurrentScore < 100)
+        if (playerCurrentScore < 100)
         {
             coinText.text = "0" + playerCurrentScore.ToString();
-
         }
         else
         {
             // chỉ chạy một lần khi được gọi tới chứ nếu để trong update thì nó chạy theo frame
             coinText.text = playerCurrentScore.ToString();
         }
-
-    }
-
-    public void AddToScore(int pointsToAdd)
-    {
-        playerCurrentScore += pointsToAdd;
     }
 
     public void AddHealth()
@@ -152,31 +139,33 @@ public class GameSession : MonoBehaviour
 
     void ResetGameSession()
     {
+        // Khi reset thì huỷ gameSession này đi để load lại cái mới ra, k huỷ đi thì sẽ có 2 gameSession hoạt động cùng lúc và điều đó rất là không hay (lỗi)
+        Destroy(gameObject);
 
-        // lấy ra index của scene hiện tại
-        int sceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(sceneBuildIndex);
+        // Sau khi đã huỷ game Session cũ đi thì load ra scene đầu tiên
+        SceneManager.LoadScene(0); // assuming the first scene is always 0-indexed
 
-        playerCurrentLives = playerStartingHealth;
-        playerCurrentScore = playerStartingCoin;
 
-        healthBar.fillAmount = playerCurrentLives * 0.1f;
 
-        if (playerCurrentScore < 10)
-        {
-            // để đoạn này vào trong hàm thì sẽ performant hơn là để ở update
-            coinText.text = "00" + playerCurrentScore.ToString();
 
-        }
-        else if (playerCurrentScore < 100)
-        {
-            coinText.text = "0" + playerCurrentScore.ToString();
 
-        }
-        else
-        {
-            // chỉ chạy một lần khi được gọi tới chứ nếu để trong update thì nó chạy theo frame
-            coinText.text = playerCurrentScore.ToString();
-        }
+        //// lấy ra index của scene hiện tại
+        //int sceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        //SceneManager.LoadScene(sceneBuildIndex);
+
+        //playerCurrentLives = playerStartingHealth;
+        //playerCurrentScore = playerStartingCoin;
+
+        //healthBar.fillAmount = playerCurrentLives * 0.1f;
+
+        //if (playerCurrentScore < 100)
+        //{
+        //    coinText.text = "0" + playerCurrentScore.ToString();
+        //}
+        //else
+        //{
+        //    // chỉ chạy một lần khi được gọi tới chứ nếu để trong update thì nó chạy theo frame
+        //    coinText.text = playerCurrentScore.ToString();
+        //}
     }
 }

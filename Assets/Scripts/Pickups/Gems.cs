@@ -16,7 +16,7 @@ public class Gems : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && collision is CapsuleCollider2D)
         {
             // cộng 1 vào persitent data player coin trong game session
             FindObjectOfType<GameSession>().AddToScore(gemValue);

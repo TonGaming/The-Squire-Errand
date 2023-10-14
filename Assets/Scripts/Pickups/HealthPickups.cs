@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    Rigidbody2D heartsRigidbody;
-    CircleCollider2D heartsCircleCollider;
-
     [SerializeField] AudioClip heartsPickupSound;
-    bool isCollected = false;
 
     [SerializeField] Vector2 heartsVelocity = new Vector2(0f, 3f);
+    
+    Rigidbody2D heartsRigidbody;
+    CircleCollider2D heartsCircleCollider;
+    AudioSource heartsAudioSource;
 
     GameSession gameSession;
 
+
+
+    [SerializeField] float volume = 0.6f;
     [SerializeField] float killDelay = 0.5f;
 
     // Start is called before the first frame update
@@ -21,7 +24,7 @@ public class Health : MonoBehaviour
     {
         heartsCircleCollider = GetComponent<CircleCollider2D>();
         heartsRigidbody = GetComponent<Rigidbody2D>();
-
+        heartsAudioSource = GetComponent<AudioSource>();
 
         gameSession = FindObjectOfType<GameSession>();
     }
@@ -34,20 +37,20 @@ public class Health : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && isCollected == false )
+        if (collision.gameObject.CompareTag("Player") && collision is CapsuleCollider2D)
         {
             gameSession.AddHealth();
 
             heartsRigidbody.velocity = heartsVelocity;
 
-            AudioSource.PlayClipAtPoint(heartsPickupSound,Camera.main.transform.position);
+            heartsAudioSource.PlayOneShot(heartsPickupSound,volume);
 
-            StartCoroutine(KillHearts());
 
-            isCollected = true;
 
             // tắt đi để ngăn kích hoạt pickups nhiều lần
-            gameObject.SetActive(false);
+            
+            heartsCircleCollider.enabled = false;
+            StartCoroutine(KillHearts());
         }
         else
         {

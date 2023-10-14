@@ -5,14 +5,14 @@ using UnityEngine;
 public class ScorePickups : MonoBehaviour
 {
     [SerializeField] AudioClip coinPickupSound;
-    [SerializeField] float volume = 0.5f;
+    [SerializeField] float volume = 0.7f;
 
-    bool isCollected = false;
+
 
     [SerializeField] float destroyDelay = .5f;
     [SerializeField] Vector2 coinVelocity = new Vector2(0f, 3f);
 
-    GameSession gameSession;
+
 
     Rigidbody2D coinRigidbody;
     CircleCollider2D coinCircleCollider;
@@ -23,24 +23,23 @@ public class ScorePickups : MonoBehaviour
         coinAudioSource = GetComponent<AudioSource>();
         coinCircleCollider = GetComponent<CircleCollider2D>();
         coinRigidbody = GetComponent<Rigidbody2D>();
-        gameSession = FindObjectOfType<GameSession>();
+
 
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && isCollected == false)
-        {
-            gameSession.ProcessPlayerScore();
 
-            isCollected = true;
+        if (collision.gameObject.CompareTag("Player") && collision is CapsuleCollider2D)
+        {
 
             // chạy audio
             coinAudioSource.PlayOneShot(coinPickupSound, volume);
             // PlayClipAtPoint sẽ không bị mất đi khi huỷ gameObject 
 
             // tắt đi để ngăn kích hoạt pickups nhiều lần
-            gameObject.SetActive(false);
+            coinCircleCollider.enabled = false;
+
 
             // tạo hiệu ứng bay lên khi chạm vào đồng xu
             coinRigidbody.velocity = coinVelocity;
@@ -48,10 +47,15 @@ public class ScorePickups : MonoBehaviour
             // sau 2s thì destroy gameObject
             Invoke("KillObject", destroyDelay);
         }
+        else
+        {
+            return;
+        }
     }
 
     void KillObject()
     {
+        
         Destroy(gameObject);
     }
 }

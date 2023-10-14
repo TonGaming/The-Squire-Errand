@@ -153,7 +153,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7120826262590114656}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1efd82d5b239ab45945c3ce1f7d027f, type: 3}
   m_Name: 
@@ -173,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinPickupSound: {fileID: 8300000, guid: 42a3cf1bd0a944e4a80a09fe6fae4110, type: 3}
   volume: 0.5
+  coinValue: 10
   destroyDelay: 0.5
   coinVelocity: {x: 0, y: 3}
 --- !u!50 &1789939863792712137
@@ -214,7 +215,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.758
   m_Pitch: 1
   Loop: 0
   Mute: 0
