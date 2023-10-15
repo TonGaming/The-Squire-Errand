@@ -77,6 +77,7 @@ public class PlayerDeathDetector : MonoBehaviour
 
             // Chạy animation và deadKick tuỳ vào hướng va chạm(collider đc chạm)
             // Xử lý va chạm của CapsuleCollider2D của player với enemy
+
             // Nếu chạm vào mặt và đang quay sang phải -> bay sang trái
             if (playerCollider is CapsuleCollider2D && playerTransform.localScale.x > Mathf.Epsilon)
             {

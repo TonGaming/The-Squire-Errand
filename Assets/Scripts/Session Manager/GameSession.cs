@@ -123,6 +123,7 @@ public class GameSession : MonoBehaviour
     {
         playerCurrentLives++;
         healthBar.fillAmount = playerCurrentLives * 0.1f;
+        
     }
 
     IEnumerator ReloadLevels()
@@ -145,7 +146,7 @@ public class GameSession : MonoBehaviour
         // Sau khi đã huỷ game Session cũ đi thì load ra scene đầu tiên
         SceneManager.LoadScene(0); // assuming the first scene is always 0-indexed
 
-
+        
 
 
 
