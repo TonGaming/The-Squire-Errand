@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,12 +12,12 @@ public class GameSession : MonoBehaviour
     [SerializeField] float reloadSceneDelay = 2f;
 
     // Số máu, số coin của người chơi lúc bắt đầu
-    [SerializeField] float playerStartingHealth = 3f;
-    [SerializeField] float playerStartingCoin = 0f;
+    [SerializeField] int playerStartingHealth = 3;
+    [SerializeField] int playerStartingCoin = 0;
 
     // Số máu trong game Session
-    [SerializeField] float playerCurrentLives;
-    [SerializeField] float playerCurrentScore;
+    [SerializeField] int playerCurrentLives;
+    [SerializeField] int playerCurrentScore;
 
     // Số máu trong game Session
     [SerializeField] Image healthBar;
@@ -29,9 +30,6 @@ public class GameSession : MonoBehaviour
     void Awake()
     {
         // Singleton Pattern
-
-        playerCurrentLives = playerStartingHealth;
-        playerCurrentScore = playerStartingCoin;
 
         // FindObjectsOfType sẽ là tìm ra một mảng tổng hợp tất cả những object đó
         int numGameSession = FindObjectsOfType<GameSession>().Length;
@@ -49,6 +47,9 @@ public class GameSession : MonoBehaviour
 
     void Start()
     {
+        playerCurrentLives = playerStartingHealth;
+        playerCurrentScore = playerStartingCoin;
+
         // Hiện UI thanh máu dựa trên số playerCurrentLives trong Game Session
         healthBar.fillAmount = playerCurrentLives * 0.1f;
 
@@ -59,7 +60,6 @@ public class GameSession : MonoBehaviour
 
     void Update()
     {
-
 
 
     }
@@ -140,13 +140,14 @@ public class GameSession : MonoBehaviour
 
     void ResetGameSession()
     {
-        // Khi reset thì huỷ gameSession này đi để load lại cái mới ra, k huỷ đi thì sẽ có 2 gameSession hoạt động cùng lúc và điều đó rất là không hay (lỗi)
+        // Khi reset thì huỷ gameSession này đi để load lại cái mới ra,
+        // k huỷ đi thì sẽ có 2 gameSession hoạt động cùng lúc và điều đó rất là không hay (lỗi)
         Destroy(gameObject);
 
         // Sau khi đã huỷ game Session cũ đi thì load ra scene đầu tiên
-        SceneManager.LoadScene(0); // assuming the first scene is always 0-indexed
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // assuming the first scene is always 0-indexed
 
-        
+        FindObjectOfType<ScenePersist>().ResetScenePersist();
 
 
 
@@ -168,5 +169,9 @@ public class GameSession : MonoBehaviour
         //    // chỉ chạy một lần khi được gọi tới chứ nếu để trong update thì nó chạy theo frame
         //    coinText.text = playerCurrentScore.ToString();
         //}
+
+
     }
+
+
 }

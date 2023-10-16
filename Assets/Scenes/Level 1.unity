@@ -39612,14 +39612,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'GameSession '
       objectReference: {fileID: 0}
-    - target: {fileID: 7159733762619781609, guid: ed4094023c693db41a931aa82ac9eeb5, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 183.9075
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159733762619781609, guid: ed4094023c693db41a931aa82ac9eeb5, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 589.17773
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

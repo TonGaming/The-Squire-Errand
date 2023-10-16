@@ -45,6 +45,7 @@ public class PlayerDeathDetector : MonoBehaviour
     void Update()
     {
         CollidersOffOnDead();
+
     }
 
 

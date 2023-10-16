@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScorePickups : MonoBehaviour
 {
     [SerializeField] AudioClip coinPickupSound;
-    [SerializeField] float volume = 0.7f;
+    [SerializeField] float volume = 0.5f;
 
 
 

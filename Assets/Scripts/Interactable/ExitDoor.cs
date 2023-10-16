@@ -7,31 +7,42 @@ public class ExitDoor : MonoBehaviour
 {
     BoxCollider2D doorBoxCollider;
 
+
+
     [SerializeField] float LevelLoadDelay = 2f;
 
     // Start is called before the first frame update
     void Start()
     {
         doorBoxCollider = GetComponent<BoxCollider2D>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         OnExit();
+
     }
 
     void OnExit()
     {
         if (doorBoxCollider.IsTouchingLayers(LayerMask.GetMask("Player")))
         {
+
             StartCoroutine(LoadNextLevel());
+        }
+        else
+        {
+            return;
         }
     }
 
     IEnumerator LoadNextLevel()
     {
         yield return new WaitForSecondsRealtime(LevelLoadDelay); // current load delay is 2 seconds
+
+        FindObjectOfType<ScenePersist>().ResetScenePersist();  // Xoá ScenePersist đi để load ra cái mới 
 
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex; // lấy ra index của scene hiện tại
 
@@ -46,4 +57,5 @@ public class ExitDoor : MonoBehaviour
         SceneManager.LoadScene(nextSceneIndex); // Loadlevel kế dựa trên currentSceneIndex + 1
 
     }
+
 }

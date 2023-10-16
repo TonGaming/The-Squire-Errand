@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScenePersist : MonoBehaviour
 {
+
+
     void Awake()
     {
-        int numScenePersists = FindObjectsOfType<GameSession>().Length;
+        int numScenePersists = FindObjectsOfType<ScenePersist>().Length;
 
         if (numScenePersists > 1)
         {
@@ -18,14 +21,8 @@ public class ScenePersist : MonoBehaviour
             DontDestroyOnLoad(gameObject); // nếu chỉ có một thì giữ nguyên
         }
     }
-    void Start()
+    public void ResetScenePersist()
     {
-        
-    }
-
-    
-    void Update()
-    {
-        
+        Destroy(gameObject); // huỷ scenePersist của màn chơi đã xong đi 
     }
 }
