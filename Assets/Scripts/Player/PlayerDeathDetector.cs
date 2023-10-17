@@ -24,7 +24,7 @@ public class PlayerDeathDetector : MonoBehaviour
 
 
     // Khai báo Game Session 
-    GameSession playerGameSession;
+    // GameSession playerGameSession;
 
     // Khai báo lực đẩy khi chết
     [SerializeField] float deadKickForce = 10f;
@@ -38,8 +38,10 @@ public class PlayerDeathDetector : MonoBehaviour
         myRigidbody2D = GetComponent<Rigidbody2D>();
         playerTransform = GetComponent<Transform>();
 
-
-        playerGameSession = FindObjectOfType<GameSession>();
+        // làm thế này sẽ gọi tới một gameSession đã bị huỷ!
+        // GameSession khi mới load ra mà có một GameSession khác tồn tại sẵn thì sẽ bị huỷ đi ngay
+        // nhưng đoạn code này đã ref tới nó, từ đó gây ra null refer -> bad design
+        //playerGameSession = FindObjectOfType<GameSession>();
     }
 
     void Update()
@@ -64,8 +66,8 @@ public class PlayerDeathDetector : MonoBehaviour
             myAnimator.SetBool("isRunning", false);
 
 
-            // Gọi tới hàm GameSession để trừ PLayerLives đi 
-            playerGameSession.ProcessPlayerDeath();
+            // Only Ref to GameSession when dead  
+            FindObjectOfType<GameSession>().ProcessPlayerDeath();
 
             // chỉnh lại trọng lực
             myRigidbody2D.gravityScale = baseGravity;

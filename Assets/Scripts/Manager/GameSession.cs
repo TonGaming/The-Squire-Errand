@@ -37,7 +37,7 @@ public class GameSession : MonoBehaviour
         if (numGameSession > 1)
         {
             Destroy(gameObject); // có nhiều gameSession hơn thì xoá đi 
-
+            gameObject.SetActive(false);
         }
         else
         {
@@ -60,7 +60,7 @@ public class GameSession : MonoBehaviour
 
     void Update()
     {
-
+        
 
     }
 
@@ -140,35 +140,19 @@ public class GameSession : MonoBehaviour
 
     void ResetGameSession()
     {
-        // Khi reset thì huỷ gameSession này đi để load lại cái mới ra,
-        // k huỷ đi thì sẽ có 2 gameSession hoạt động cùng lúc và điều đó rất là không hay (lỗi)
-        Destroy(gameObject);
+        
+        
+        FindObjectOfType<ScenePersist>().ResetScenePersist();
 
         // Sau khi đã huỷ game Session cũ đi thì load ra scene đầu tiên
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // assuming the first scene is always 0-indexed
 
-        FindObjectOfType<ScenePersist>().ResetScenePersist();
+        // Khi reset thì huỷ gameSession này đi để load lại cái mới ra,
+        // k huỷ đi thì sẽ có 2 gameSession hoạt động cùng lúc và điều đó rất là không hay (lỗi)
+        Destroy(gameObject);
+        gameObject.SetActive(false);
 
-
-
-        //// lấy ra index của scene hiện tại
-        //int sceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        //SceneManager.LoadScene(sceneBuildIndex);
-
-        //playerCurrentLives = playerStartingHealth;
-        //playerCurrentScore = playerStartingCoin;
-
-        //healthBar.fillAmount = playerCurrentLives * 0.1f;
-
-        //if (playerCurrentScore < 100)
-        //{
-        //    coinText.text = "0" + playerCurrentScore.ToString();
-        //}
-        //else
-        //{
-        //    // chỉ chạy một lần khi được gọi tới chứ nếu để trong update thì nó chạy theo frame
-        //    coinText.text = playerCurrentScore.ToString();
-        //}
+       
 
 
     }
