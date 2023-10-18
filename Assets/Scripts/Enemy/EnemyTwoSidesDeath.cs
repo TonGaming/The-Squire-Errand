@@ -7,10 +7,14 @@ public class EnemyTwoSidesDeath : MonoBehaviour
 {
     //[SerializeField] float LevelLoadDelay = 1f;
 
+    //[SerializeField] float pushBackForce = 10f;
+
     CapsuleCollider2D enemyCapsuleCollider;
     Transform enemyTransform;
     Animator enemyAnimator;
     Rigidbody2D enemyRigidbody2D;
+
+
 
     //SpriteRenderer enemySpriteRenderer;
     EdgeCollider2D enemyEdgeCollider;
@@ -29,32 +33,46 @@ public class EnemyTwoSidesDeath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FlipSpriteOnDamage();
+
     }
 
-    void FlipSpriteOnDamage()
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (enemyEdgeCollider.IsTouchingLayers(LayerMask.GetMask("Bullet")))
+        // edge Collider là mặt lưng
+        Collider2D enemyCollider = collision.otherCollider ;
+        if (enemyCollider is EdgeCollider2D 
+            && collision.gameObject.CompareTag("Bullet")
+            && FindObjectOfType<EnemyDeathDetector>().GetIsAliveState() == true)
         {
-            Vector2 enemyFacing = new Vector2(-enemyTransform.localScale.x, 1f);
+            //Vector2 enemyFacing = new Vector2(-enemyTransform.localScale.x, 1f);
 
             // hướng ngã xuống chính là hướng ngược lại (do bị bắn từ sau lưng)
-            enemyTransform.localScale = enemyFacing;
+            //enemyTransform.localScale = enemyFacing;
 
-            enemyEdgeCollider.enabled = false;
-            enemyCapsuleCollider.enabled = false;
+            // hit turn the enemy aroud 
+            //enemyRigidbody2D.velocity = new Vector2(enemyTransform.localScale.x * pushBackForce, 20f);
+
+            Debug.Log("TOI BI BAN TU SAU LUNG");
+
+
         }
-        else if (enemyCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Bullet")))
+        // Capsule Collider là mặt tiền
+        else if (enemyCollider is CapsuleCollider2D 
+            && collision.gameObject.CompareTag("Bullet")
+            && FindObjectOfType<EnemyDeathDetector>().GetIsAliveState() == true)
         {
-            Vector2 enemyFacing = new Vector2(enemyTransform.localScale.x, 1f);
+            //Vector2 enemyFacing = new Vector2(enemyTransform.localScale.x, 1f);
 
             // hướng ngã xuống là hướng đang nhìn về (do bị bắn từ trước mặt)
-            enemyTransform.localScale = enemyFacing;
+            //enemyTransform.localScale = enemyFacing;
+
+            //enemyRigidbody2D.velocity = new Vector2(-enemyTransform.localScale.x * pushBackForce, 20f);
+
+            Debug.Log("TOI BI BAN TU TRUOC MAT");
 
 
 
-            enemyEdgeCollider.enabled = false;
-            enemyCapsuleCollider.enabled = false;
         }
     }
+    
 }

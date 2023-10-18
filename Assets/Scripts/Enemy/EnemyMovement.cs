@@ -12,25 +12,19 @@ public class EnemyMovement : MonoBehaviour
     Rigidbody2D enemyRigidbody;
     Animator enemyAnimator;
     CapsuleCollider2D enemyCapsuleCollider;
-    bool isAlive;
+
 
     void Start()
     {
         enemyRigidbody = GetComponent<Rigidbody2D>();
         enemyAnimator = GetComponent<Animator>();
         enemyCapsuleCollider = GetComponent<CapsuleCollider2D>();
-        isAlive = true;
+
     }
 
     void Update()
     {
-
         EnemyMoving();
-
-
-
-
-        Death();
 
     }
 
@@ -53,12 +47,12 @@ public class EnemyMovement : MonoBehaviour
     // Làm enemy di chuyển 
     void EnemyMoving()
     {
-        if (isAlive)
+        if (FindObjectOfType<EnemyDeathDetector>().GetIsAliveState() == true)
         {
             enemyRigidbody.velocity = new Vector2(moveSpeed, 0);
 
         }
-        else if (!isAlive)
+        else if (FindObjectOfType<EnemyDeathDetector>().GetIsAliveState() == false)
         {
             // khoá di chuyển khi chết
             enemyRigidbody.velocity = new Vector2(0f, 0f);
@@ -79,34 +73,7 @@ public class EnemyMovement : MonoBehaviour
         moveSpeed = -moveSpeed;
     }
 
-    void Death()
-    {
-        // nếu ăn đạn và vẫn sống thì ...
-        if (enemyRigidbody.IsTouchingLayers(LayerMask.GetMask("Bullet")) && isAlive)
-        {
-            
-
-            Invoke("MakeCorpses", 0.1f);
-
-            enemyAnimator.SetBool("isDead", true); // chạy animation chết one side(nếu có)
-            isAlive = false;
-        }
-        else
-        {
-            return;
-        }
-    }
-
-    void MakeCorpses()
-    {
-        Collider2D[] colliderLibrary = GetComponentsInChildren<Collider2D>();
-
-        foreach(Collider2D childColliders in colliderLibrary)
-        {
-            childColliders.isTrigger = true;
-        }
-
-    }
+    
 
 
 }
