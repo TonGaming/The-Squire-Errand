@@ -8,54 +8,51 @@ public class EnemyDeathDetector : MonoBehaviour
 {
     // enemy moving speed
 
-    Rigidbody2D enemyRigidbody;
+
     Animator enemyAnimator;
 
 
-
+    bool isAlive = true;
 
     [SerializeField] int enemyHealth = 4;
 
-    bool isAlive = true;
+
 
 
 
     void Start()
     {
-        enemyRigidbody = GetComponent<Rigidbody2D>();
-        enemyAnimator = GetComponent<Animator>();
 
+        enemyAnimator = GetComponent<Animator>();
 
     }
 
     void Update()
     {
-        
+        GetEnemyHealth();
         GetIsAliveState();
     }
 
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Bullet") && enemyHealth > 0)
+        if (collision.gameObject.CompareTag("Bullet") && enemyHealth > 1)
         {
-            Debug.Log("Ke dich da an dame nhung k chet");
 
             enemyAnimator.SetBool("isHurt", true);
 
             enemyHealth--;
 
-
-
-            Invoke("ResetIsHurtState", 0.4f);
-        } 
-        else if (collision.gameObject.CompareTag("Bullet") && enemyHealth == 0)
+            Invoke("ResetIsHurtState", 0.5f);
+        }
+        else if (collision.gameObject.CompareTag("Bullet") && enemyHealth <= 1)
         {
             enemyAnimator.SetBool("isDead", true);
 
-            Invoke("MakeCorpses", 0.1f);
-
             isAlive = false;
+
+            MakeCorpses();
+
         }
     }
 
@@ -68,11 +65,7 @@ public class EnemyDeathDetector : MonoBehaviour
             childColliders.enabled = false;
         }
 
-    }
 
-    public bool GetIsAliveState()
-    {
-        return isAlive;
     }
 
     void ResetIsHurtState()
@@ -80,4 +73,13 @@ public class EnemyDeathDetector : MonoBehaviour
         enemyAnimator.SetBool("isHurt", false);
     }
 
+    public int GetEnemyHealth()
+    {
+        return enemyHealth;
+    }
+
+    public bool GetIsAliveState()
+    {
+        return isAlive;
+    }
 }

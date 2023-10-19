@@ -8,23 +8,36 @@ public class EnemyMovement : MonoBehaviour
 {
     // enemy moving speed
     [SerializeField] float moveSpeed;
+    [SerializeField] float stunTime = 1f;
 
     Rigidbody2D enemyRigidbody;
     Animator enemyAnimator;
-    CapsuleCollider2D enemyCapsuleCollider;
 
+    EnemyDeathDetector enemyDeathDetector;
+
+
+    bool isShot = false;
 
     void Start()
     {
         enemyRigidbody = GetComponent<Rigidbody2D>();
+
         enemyAnimator = GetComponent<Animator>();
-        enemyCapsuleCollider = GetComponent<CapsuleCollider2D>();
+
+        enemyDeathDetector = GetComponent<EnemyDeathDetector>();
 
     }
 
     void Update()
     {
+
+
+
+
         EnemyMoving();
+
+
+
 
     }
 
@@ -37,26 +50,71 @@ public class EnemyMovement : MonoBehaviour
             ReverseDirection();
             FlipSprite();
         }
-        else
+
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Collider2D enemyCollider = collision.otherCollider;
+        if (enemyCollider is EdgeCollider2D && collision.gameObject.CompareTag("Bullet") && enemyDeathDetector.GetEnemyHealth() > 1)
         {
-            return;
+            isShot = true;
+
+            // Phải làm animation đứng im bị thương vào đây
+            //enemyAnimator.SetBool
+            
+
+            StartCoroutine(HealEnemyAfterShot());
+
+
+
+            FlipSprite();
+
+
+            Debug.Log("Toi bi ban vao lung roiii");
+
+
+
         }
+        else if (enemyCollider is EdgeCollider2D && collision.gameObject.CompareTag("Bullet") && enemyDeathDetector.GetEnemyHealth() <= 1)
+        {
+            FlipSprite();
+
+
+
+            Debug.Log("Toi da chet trong movement");
+
+
+        }
+    }
+
+    IEnumerator HealEnemyAfterShot()
+    {
+        yield return new WaitForSecondsRealtime(stunTime);
+
+        ResetIsShotState();
+
+        ReverseDirection();
+
     }
 
     // tách hàm cho tường minh, dễ tái sử dụng
     // Làm enemy di chuyển 
     void EnemyMoving()
     {
-        if (FindObjectOfType<EnemyDeathDetector>().GetIsAliveState() == true)
+        if (isShot == false && enemyDeathDetector.GetIsAliveState() == true)
         {
             enemyRigidbody.velocity = new Vector2(moveSpeed, 0);
 
         }
-        else if (FindObjectOfType<EnemyDeathDetector>().GetIsAliveState() == false)
+        else if (isShot == true && enemyDeathDetector.GetIsAliveState() == true)
         {
-            // khoá di chuyển khi chết
-            enemyRigidbody.velocity = new Vector2(0f, 0f);
+            enemyRigidbody.velocity = new Vector2(0, 0);
 
+        }
+        else if (enemyDeathDetector.GetIsAliveState() == false)
+        {
+            enemyRigidbody.velocity = new Vector2(0, 0);
         }
 
     }
@@ -73,7 +131,10 @@ public class EnemyMovement : MonoBehaviour
         moveSpeed = -moveSpeed;
     }
 
-    
+    void ResetIsShotState()
+    {
+        isShot = false;
+    }
 
 
 }

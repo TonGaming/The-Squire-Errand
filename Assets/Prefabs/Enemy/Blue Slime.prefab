@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2160174979555056899}
   - component: {fileID: 1450322679913986566}
   - component: {fileID: 3176040298704582493}
+  - component: {fileID: 2313211709330114397}
   - component: {fileID: 4993432885109997798}
   m_Layer: 10
   m_Name: Blue Slime
@@ -195,6 +196,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+--- !u!114 &2313211709330114397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8055385564765491905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 452e5d491dff4274abed79007e0c737a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHealth: 4
 --- !u!70 &4993432885109997798
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

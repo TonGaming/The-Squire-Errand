@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2043833823606221532}
   - component: {fileID: 4751856530673143981}
   - component: {fileID: 7173379890586754406}
+  - component: {fileID: -4420193188917528885}
   m_Layer: 10
   m_Name: Flying Eye
   m_TagString: Enemy
@@ -97,7 +98,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 948435729
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: -1303086505, guid: a8bb3d0d6aa665048b81855a1b079dea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -230,3 +231,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+--- !u!114 &-4420193188917528885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7272771909622203057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 452e5d491dff4274abed79007e0c737a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHealth: 4
