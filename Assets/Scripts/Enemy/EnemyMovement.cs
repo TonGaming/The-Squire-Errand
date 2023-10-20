@@ -8,11 +8,12 @@ public class EnemyMovement : MonoBehaviour
 {
     // enemy moving speed
     [SerializeField] float moveSpeed;
-    [SerializeField] float stunTime = 1f;
+    float stunTime = .6f;
 
     Rigidbody2D enemyRigidbody;
     Animator enemyAnimator;
-
+    Transform enemyTransform;
+    
     EnemyDeathDetector enemyDeathDetector;
 
 
@@ -21,7 +22,7 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         enemyRigidbody = GetComponent<Rigidbody2D>();
-
+        enemyTransform = GetComponent<Transform>();
         enemyAnimator = GetComponent<Animator>();
 
         enemyDeathDetector = GetComponent<EnemyDeathDetector>();
@@ -30,9 +31,6 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-
-
-
 
         EnemyMoving();
 
@@ -56,36 +54,25 @@ public class EnemyMovement : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         Collider2D enemyCollider = collision.otherCollider;
-        if (enemyCollider is EdgeCollider2D && collision.gameObject.CompareTag("Bullet") && enemyDeathDetector.GetEnemyHealth() > 1)
+        if (enemyCollider is EdgeCollider2D && collision.gameObject.CompareTag("Bullet") && isShot == false)
         {
             isShot = true;
 
-            // Phải làm animation đứng im bị thương vào đây
-            //enemyAnimator.SetBool
-            
+            FlipSprite();
 
             StartCoroutine(HealEnemyAfterShot());
-
-
-
-            FlipSprite();
-
-
-            Debug.Log("Toi bi ban vao lung roiii");
-
-
+            Debug.Log("Toi an dan vao lung r");
 
         }
-        else if (enemyCollider is EdgeCollider2D && collision.gameObject.CompareTag("Bullet") && enemyDeathDetector.GetEnemyHealth() <= 1)
+        else if (enemyCollider is CapsuleCollider2D && collision.gameObject.CompareTag("Bullet") && isShot == false)
         {
-            FlipSprite();
+            isShot = true;
 
-
-
-            Debug.Log("Toi da chet trong movement");
-
-
+            Invoke("ResetIsShotState", stunTime);
+            Debug.Log("Toi an dan vao mat r ");
         }
+
+
     }
 
     IEnumerator HealEnemyAfterShot()
@@ -112,7 +99,7 @@ public class EnemyMovement : MonoBehaviour
             enemyRigidbody.velocity = new Vector2(0, 0);
 
         }
-        else if (enemyDeathDetector.GetIsAliveState() == false)
+        else if (enemyDeathDetector.GetIsAliveState() == false || enemyAnimator.GetBool("isHurt") == true)
         {
             enemyRigidbody.velocity = new Vector2(0, 0);
         }
@@ -120,9 +107,9 @@ public class EnemyMovement : MonoBehaviour
     }
 
     // lật mặt
-    void FlipSprite()
+    public void FlipSprite()
     {
-        transform.localScale = new Vector2(-(Mathf.Sign(enemyRigidbody.velocity.x)), 1f);
+        enemyTransform.localScale = new Vector2(-(Mathf.Sign(enemyRigidbody.velocity.x)), 1f);
     }
 
     // chuyển hướng

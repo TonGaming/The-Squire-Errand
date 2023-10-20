@@ -7,10 +7,11 @@ using UnityEngine;
 public class EnemyDeathDetector : MonoBehaviour
 {
     // enemy moving speed
-
+    EnemyMovement enemyMovement;
 
     Animator enemyAnimator;
-
+    Transform enemyTransform;
+    Rigidbody2D enemyRigidbody;
 
     bool isAlive = true;
 
@@ -22,9 +23,10 @@ public class EnemyDeathDetector : MonoBehaviour
 
     void Start()
     {
-
+        enemyMovement = GetComponent<EnemyMovement>();
         enemyAnimator = GetComponent<Animator>();
-
+        enemyTransform = GetComponent<Transform>();
+        enemyRigidbody = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -36,7 +38,8 @@ public class EnemyDeathDetector : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet") && enemyHealth > 1)
+        
+        if (collision.gameObject.CompareTag("Bullet") && enemyHealth > Mathf.Epsilon )
         {
 
             enemyAnimator.SetBool("isHurt", true);
@@ -45,15 +48,21 @@ public class EnemyDeathDetector : MonoBehaviour
 
             Invoke("ResetIsHurtState", 0.5f);
         }
-        else if (collision.gameObject.CompareTag("Bullet") && enemyHealth <= 1)
+        
+        if ( enemyHealth == 0)
         {
             enemyAnimator.SetBool("isDead", true);
+
+            Invoke("ResetLocalScale", Mathf.Epsilon);
 
             isAlive = false;
 
             MakeCorpses();
 
+            
+
         }
+        
     }
 
     void MakeCorpses()
@@ -65,7 +74,13 @@ public class EnemyDeathDetector : MonoBehaviour
             childColliders.enabled = false;
         }
 
+        enemyRigidbody.velocity = new Vector2(0, 0);
 
+    }
+
+    void ResetLocalScale()
+    {
+        enemyTransform.localScale = new Vector2(-(enemyTransform.localScale.x), 1f);
     }
 
     void ResetIsHurtState()
