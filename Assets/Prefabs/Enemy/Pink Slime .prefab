@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0602415b9621a434f85ffe39929f0b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 2.4
 --- !u!114 &8820573812476901847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452e5d491dff4274abed79007e0c737a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 4
+  enemyHealth: 1
 --- !u!61 &6125654419989042066
 BoxCollider2D:
   m_ObjectHideFlags: 0
