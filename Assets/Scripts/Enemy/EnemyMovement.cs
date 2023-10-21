@@ -109,7 +109,7 @@ public class EnemyMovement : MonoBehaviour
     // lật mặt
     public void FlipSprite()
     {
-        enemyTransform.localScale = new Vector2(-(Mathf.Sign(enemyRigidbody.velocity.x)), 1f);
+        enemyTransform.localScale = new Vector2(-(enemyTransform.localScale.x), enemyTransform.localScale.y);
     }
 
     // chuyển hướng

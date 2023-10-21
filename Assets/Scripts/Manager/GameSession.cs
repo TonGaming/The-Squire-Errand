@@ -60,7 +60,7 @@ public class GameSession : MonoBehaviour
 
     void Update()
     {
-        
+
 
     }
 
@@ -123,7 +123,7 @@ public class GameSession : MonoBehaviour
     {
         playerCurrentLives++;
         healthBar.fillAmount = playerCurrentLives * 0.1f;
-        
+
     }
 
     IEnumerator ReloadLevels()
@@ -140,22 +140,23 @@ public class GameSession : MonoBehaviour
 
     void ResetGameSession()
     {
-        
-        
+
         FindObjectOfType<ScenePersist>().ResetScenePersist();
 
-        // Sau khi đã huỷ game Session cũ đi thì load ra scene đầu tiên
+        // Sau khi đã huỷ game Session cũ đi thì load ra scene thua
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // assuming the first scene is always 0-indexed
 
         // Khi reset thì huỷ gameSession này đi để load lại cái mới ra,
         // k huỷ đi thì sẽ có 2 gameSession hoạt động cùng lúc và điều đó rất là không hay (lỗi)
         Destroy(gameObject);
         gameObject.SetActive(false);
-
-       
-
-
     }
 
+    public void KillGameSession()
+    {
+        FindObjectOfType<ScenePersist>().ResetScenePersist();
+        Destroy(gameObject);
+        gameObject.SetActive(false);
 
+    }
 }

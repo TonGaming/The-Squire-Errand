@@ -80,7 +80,7 @@ public class EnemyDeathDetector : MonoBehaviour
 
     void ResetLocalScale()
     {
-        enemyTransform.localScale = new Vector2(-(enemyTransform.localScale.x), 1f);
+        enemyTransform.localScale = new Vector2(-(enemyTransform.localScale.x), enemyTransform.localScale.y);
     }
 
     void ResetIsHurtState()
