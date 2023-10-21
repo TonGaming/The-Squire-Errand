@@ -7,8 +7,9 @@ public class FallingBlocks : MonoBehaviour
     BoxCollider2D blockBoxCollider;
     Rigidbody2D blockRigidBody;
 
-    [SerializeField] float destroyDelay = 2f;
-    [SerializeField] Vector2 blockVelocity = new Vector2(0f, 10f);
+    [SerializeField] float destroyDelay = 1f;
+    [SerializeField] float gravityForce = 2f;
+
 
     bool isFalling = false;
     void Start()
@@ -30,13 +31,22 @@ public class FallingBlocks : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && isFalling == false)
         {
             isFalling = true;
-            blockRigidBody.velocity = blockVelocity;
+
+            Invoke("FallingDown", destroyDelay - 0.4f);
+            
             Invoke("KillBlocks", destroyDelay);
         }  
     }
 
+    void FallingDown()
+    {
+        blockRigidBody.gravityScale = gravityForce;
+        
+    }
+
     void KillBlocks()
     {
+
         gameObject.SetActive(false);
         Destroy(gameObject);
     }
