@@ -89,7 +89,7 @@ public class EnemyMovement : MonoBehaviour
     // Làm enemy di chuyển 
     void EnemyMoving()
     {
-        if (isShot == false && enemyDeathDetector.GetIsAliveState() == true)
+        if (isShot == false && enemyDeathDetector.GetIsAliveState() == true && enemyAnimator.GetBool("isHurt") == false)
         {
             enemyRigidbody.velocity = new Vector2(moveSpeed, 0);
 
