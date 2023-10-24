@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     [SerializeField] AudioSource FootstepsSounds;
     [SerializeField] AudioSource ClimbingSounds;
     [SerializeField] AudioSource BouncingSounds;
+    [SerializeField] AudioSource JumpingSounds;
 
 
     // Giá trị nhập vào từ bàn phím, thường là 1, -1 ở mỗi trục
@@ -107,7 +108,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             myRigidbody2D.velocity = new Vector2(myRigidbody2D.velocity.x, jumpForce);
             myAnimator.SetTrigger("takeOff");
             isGrounded = false;
-
+            JumpingSounds.Play();
         }
         else if (!isGrounded && value.isPressed)
         {

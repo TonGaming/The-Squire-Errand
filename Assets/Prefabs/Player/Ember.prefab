@@ -258,6 +258,7 @@ MonoBehaviour:
   FootstepsSounds: {fileID: 0}
   ClimbingSounds: {fileID: 0}
   BouncingSounds: {fileID: 0}
+  JumpingSounds: {fileID: 0}
 --- !u!114 &7567765019175224958
 MonoBehaviour:
   m_ObjectHideFlags: 0
