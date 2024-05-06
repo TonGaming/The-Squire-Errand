@@ -15,7 +15,7 @@ public class MoveLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     // Start is called before the first frame update
     void Awake()
     {
-        playerMovement = FindAnyObjectByType<PlayerMovement>();
+        //playerMovement = FindAnyObjectByType<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -27,7 +27,7 @@ public class MoveLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {
 
-        playerMovement.OnMove(moveLeftValue);
+        FindAnyObjectByType<PlayerMovement>().OnMove(moveLeftValue);
 
 
     }
@@ -36,7 +36,7 @@ public class MoveLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         // Set biến bool là false khi người chơi nhả nút tấn công
 
-        playerMovement.OnMove(notMovingValue);
+        FindAnyObjectByType<PlayerMovement>().OnMove(notMovingValue);
 
     }
 }

@@ -13,7 +13,7 @@ public class MoveDown : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     // Start is called before the first frame update
     void Awake()
     {
-        playerMovement = FindAnyObjectByType<PlayerMovement>();
+        //playerMovement = FindAnyObjectByType<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -26,14 +26,14 @@ public class MoveDown : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {
 
-        playerMovement.ClimbLadder(MoveDownValue);
+        FindAnyObjectByType<PlayerMovement>().ClimbLadder(MoveDownValue);
 
 
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        playerMovement.ClimbLadder(NotMovingValue);
+        FindAnyObjectByType<PlayerMovement>().ClimbLadder(NotMovingValue);
 
 
     }

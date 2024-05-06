@@ -130,17 +130,17 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         moveInput = value;
     }
 
-    public void OnJump(InputValue value)
+    public void OnJump(int value)
     {
         // Nếu đang chạm vào layer ground VÀ phím cách được ấn -> thì mới nhảy, hoặc đang bám thang và ấn cách thì cũng nhảy đc 
-        if ((isGrounded && value.isPressed) || (isClimbable && value.isPressed))
+        if ((isGrounded && value == 1 ) || (isClimbable && value == 1))
         {
             myRigidbody2D.velocity = new Vector2(myRigidbody2D.velocity.x, jumpForce);
             myAnimator.SetTrigger("takeOff");
             isGrounded = false;
             JumpingSounds.Play();
         }
-        else if (!isGrounded && value.isPressed)
+        else if (!isGrounded || value != 1)
         {
             return;
         }

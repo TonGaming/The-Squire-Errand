@@ -19,7 +19,7 @@ public class MoveUp : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     // Update is called once per frame
     void Update()
     {
-        playerMovement.ClimbLadder(NotMovingValue);
+        FindAnyObjectByType<PlayerMovement>().ClimbLadder(NotMovingValue);
 
         
 
@@ -29,14 +29,14 @@ public class MoveUp : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {
 
-        playerMovement.ClimbLadder(MoveUpValue);
+        FindAnyObjectByType<PlayerMovement>().ClimbLadder(MoveUpValue);
 
 
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        playerMovement.ClimbLadder(NotMovingValue);
+        FindAnyObjectByType<PlayerMovement>().ClimbLadder(NotMovingValue);
 
 
     }
