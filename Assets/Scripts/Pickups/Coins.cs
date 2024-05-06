@@ -20,7 +20,7 @@ public class Coins : MonoBehaviour
         if (collision.gameObject.CompareTag("Player")  && !isCollected)
         {
             // adding points to the scoring sys if only touched by the player Capsule
-            FindObjectOfType<GameSession>().AddToScore(coinValue);
+            FindAnyObjectByType<GameSession>().AddToScore(coinValue);
 
             isCollected = true;
         }

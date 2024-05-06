@@ -26,7 +26,7 @@ public class Health : MonoBehaviour
         heartsRigidbody = GetComponent<Rigidbody2D>();
         heartsAudioSource = GetComponent<AudioSource>();
 
-        gameSession = FindObjectOfType<GameSession>();
+        gameSession = FindAnyObjectByType<GameSession>();
     }
 
     // Update is called once per frame

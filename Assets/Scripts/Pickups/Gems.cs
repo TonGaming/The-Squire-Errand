@@ -19,7 +19,7 @@ public class Gems : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && collision is CapsuleCollider2D)
         {
             // cộng 1 vào persitent data player coin trong game session
-            FindObjectOfType<GameSession>().AddToScore(gemValue);
+            FindAnyObjectByType<GameSession>().AddToScore(gemValue);
 
             
         }

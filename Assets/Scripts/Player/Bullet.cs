@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
 
 
         // Get ra player ở một script playermovement
-        myPlayer = FindObjectOfType<PlayerMovement>();
+        myPlayer = FindAnyObjectByType<PlayerMovement>();
 
         // Làm đường đạn
         bulletTrajectory = new(myPlayer.transform.localScale.x * bulletSpeed, 0f);

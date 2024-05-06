@@ -27,6 +27,7 @@ public class GameSession : MonoBehaviour
     //[SerializeField] Image playerHealthBarUI;
 
     // Awake sẽ được gọi when this script is brought to life(push the play button) or when we reload the scene
+    [System.Obsolete]
     void Awake()
     {
         // Singleton Pattern
@@ -141,7 +142,7 @@ public class GameSession : MonoBehaviour
     void ResetGameSession()
     {
 
-        FindObjectOfType<ScenePersist>().ResetScenePersist();
+        FindAnyObjectByType<ScenePersist>().ResetScenePersist();
 
         // Sau khi đã huỷ game Session cũ đi thì load ra scene thua
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // assuming the first scene is always 0-indexed
@@ -154,7 +155,7 @@ public class GameSession : MonoBehaviour
 
     public void KillGameSession()
     {
-        FindObjectOfType<ScenePersist>().ResetScenePersist();
+        FindAnyObjectByType<ScenePersist>().ResetScenePersist();
         Destroy(gameObject);
         gameObject.SetActive(false);
 

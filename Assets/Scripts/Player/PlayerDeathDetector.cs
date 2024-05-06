@@ -66,7 +66,7 @@ public class PlayerDeathDetector : MonoBehaviour
 
 
             // Only Ref to GameSession when dead  
-            FindObjectOfType<GameSession>().ProcessPlayerDeath();
+            FindAnyObjectByType<GameSession>().ProcessPlayerDeath();
 
             // chỉnh lại trọng lực
             myRigidbody2D.gravityScale = baseGravity;

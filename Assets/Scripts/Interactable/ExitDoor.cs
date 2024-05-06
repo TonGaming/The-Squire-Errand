@@ -42,7 +42,7 @@ public class ExitDoor : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(LevelLoadDelay); // current load delay is 2 seconds
 
-        FindObjectOfType<ScenePersist>().ResetScenePersist();  // Xoá ScenePersist đi để load ra cái mới 
+        FindAnyObjectByType<ScenePersist>().ResetScenePersist();  // Xoá ScenePersist đi để load ra cái mới 
 
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex; // lấy ra index của scene hiện tại
 
@@ -51,7 +51,7 @@ public class ExitDoor : MonoBehaviour
 
         if (nextSceneIndex == SceneManager.sceneCountInBuildSettings) // nếu index scene tiếp bằng tổng số lượng scene trong build setting, chẳng hạn có 5 levels mà nextSceneIndex = 5 -> thì reset lại về 0
         {
-            FindObjectOfType<GameSession>().KillGameSession();
+            FindAnyObjectByType<GameSession>().KillGameSession();
             SceneManager.LoadScene(0); // khi reset lại scene index = 0 thì sẽ load lại map đầu tiên 
 
         }

@@ -9,7 +9,9 @@ public class ScenePersist : MonoBehaviour
 
     void Awake()
     {
+#pragma warning disable CS0618 // Type or member is obsolete
         int numScenePersists = FindObjectsOfType<ScenePersist>().Length;
+#pragma warning restore CS0618 // Type or member is obsolete
 
         if (numScenePersists > 1)
         {

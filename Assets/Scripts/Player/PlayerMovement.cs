@@ -42,6 +42,9 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     bool isClimbable = true;
     bool isWalking = false;
     bool isClimbing = false;
+
+    bool isMoving = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,7 +55,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         myCircleCollider2D = GetComponent<CircleCollider2D>();
 
 
-        playerDeathDetector = FindObjectOfType<PlayerDeathDetector>();
+        playerDeathDetector = FindAnyObjectByType<PlayerDeathDetector>();
     }
 
     // Update is called once per frame
@@ -64,6 +67,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
          * nếu chỉ khoá PlayerInput.enabled = false lại không thôi thì các hàm tác động tới X axis và Y axis vẫn sẽ hoạt động
          * từ đó ngăn cản các cú dead kick dc thực thi
          */
+        MoveCheck();
 
         FootstepsSoundPlayer();
         ClimbLadderSoundPlayer();
@@ -73,9 +77,10 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             Run();
             FlipSprite();
             groundCheck();
+
+#if UNITY_STANDALONE || UNITY_WEBPLAYER
             ClimbLadder();
-            
-            
+#endif
         }
         else { return; }
 
@@ -92,15 +97,15 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             BouncingSounds.Play();
         }
     }
-
-    void OnMove(InputValue value) // Luôn phải tuân thủ tên Hàm là Pascal Case
+#if UNITY_STANDALONE || UNITY_WEBPLAYER
+    public void OnMove(InputValue value) // Luôn phải tuân thủ tên Hàm là Pascal Case
     {
         // khai báo biến moveInput là kiểu Vector2 
         // sau đó get ra giá trị x y của InputValue sau đó gán ngược vào moveInput 
         moveInput = value.Get<Vector2>();
     }
 
-    void OnJump(InputValue value)
+    public void OnJump(InputValue value)
     {
         // Nếu đang chạm vào layer ground VÀ phím cách được ấn -> thì mới nhảy, hoặc đang bám thang và ấn cách thì cũng nhảy đc 
         if ((isGrounded && value.isPressed) || (isClimbable && value.isPressed))
@@ -115,7 +120,32 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             return;
         }
     }
+#endif
 
+#if (UNITY_ANDROID || UNITY_IOS)
+    public void OnMove(Vector2 value) // Luôn phải tuân thủ tên Hàm là Pascal Case
+    {
+        // khai báo biến moveInput là kiểu Vector2 
+        // sau đó get ra giá trị x y của InputValue sau đó gán ngược vào moveInput 
+        moveInput = value;
+    }
+
+    public void OnJump(InputValue value)
+    {
+        // Nếu đang chạm vào layer ground VÀ phím cách được ấn -> thì mới nhảy, hoặc đang bám thang và ấn cách thì cũng nhảy đc 
+        if ((isGrounded && value.isPressed) || (isClimbable && value.isPressed))
+        {
+            myRigidbody2D.velocity = new Vector2(myRigidbody2D.velocity.x, jumpForce);
+            myAnimator.SetTrigger("takeOff");
+            isGrounded = false;
+            JumpingSounds.Play();
+        }
+        else if (!isGrounded && value.isPressed)
+        {
+            return;
+        }
+    }
+#endif
     void groundCheck()
     {
         if (myCircleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
@@ -137,7 +167,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
 
     }
 
-
+      
     void Run()
     {
         // Tạo Vector lưu hướng di chuyển của ng chơi, gán giá trị X, dựa trên moveInput vào. Giá trị Y thì
@@ -189,6 +219,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         }
     }
 
+#if UNITY_STANDALONE || UNITY_WEBPLAYER
     void ClimbLadder()
     {
         if (myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ladder")))
@@ -214,7 +245,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         }
         else { return; }
 
-        // Laadder Animation
+        // Ladder Animation
         // nếu chạm thang k chạm sàn và di chuyển trên trục Y thì chạy animation đang trèo
         if (isClimbable && (isGrounded || !isGrounded) && Mathf.Abs(myRigidbody2D.velocity.y) >= Mathf.Epsilon)
         {
@@ -232,6 +263,57 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
 
     }
 
+#endif
+
+#if (UNITY_ANDROID || UNITY_IOS)
+    
+    public void ClimbLadder(Vector2 climbingInput)
+    {
+        if (myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ladder")))
+        {
+            // báo xem có climb-able hay k
+            isClimbable = true;
+            //myRigidbody2D.gravityScale = 0;
+            myAnimator.SetBool("isJumping", false);
+            myRigidbody2D.gravityScale = 0;
+
+            // lấy giá trị truyền vào và nhân với climbSpeed
+            climbingInput = new Vector2(myRigidbody2D.velocity.x, moveInput.y * climbSpeed);
+
+            myRigidbody2D.velocity = climbingInput;
+
+        }
+        else if (!myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ladder")))
+        {
+            // nếu k chạm vào thang, thì k thể climb
+            isClimbable = false;
+            myAnimator.SetBool("isClimbing", false);
+            myAnimator.SetBool("isHanging", false);
+            myRigidbody2D.gravityScale = baseGravity;
+        }
+        else { return; }
+
+        // Ladder Animation
+        // nếu chạm thang k chạm sàn và di chuyển trên trục Y thì chạy animation đang trèo
+        if (isClimbable && (isGrounded || !isGrounded) && Mathf.Abs(myRigidbody2D.velocity.y) >= Mathf.Epsilon)
+        {
+
+            myAnimator.SetBool("isClimbing", true);
+            myAnimator.SetBool("isHanging", false);
+            myAnimator.SetBool("isRunning", false);
+        }
+        else if (isClimbable && Mathf.Abs(myRigidbody2D.velocity.y) <= Mathf.Epsilon)
+        {
+            myAnimator.SetBool("isHanging", true);
+            myAnimator.SetBool("isClimbing", false);
+        }
+        else { return; }
+
+    }
+
+
+
+#endif
     void ClimbLadderSoundPlayer()
     {
         if (isClimbable && Mathf.Abs(myRigidbody2D.velocity.y) >= Mathf.Epsilon
@@ -283,6 +365,24 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     public bool GetGroundedState()
     {
         return isGrounded;
+    }
+
+    void MoveCheck()
+    {
+        if (Mathf.Abs(myRigidbody2D.velocity.x) >= 1 || Mathf.Abs(myRigidbody2D.velocity.y) >= 1)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
+
+    }
+
+    public bool GetIsMoving()
+    {
+        return isMoving;
     }
 
     

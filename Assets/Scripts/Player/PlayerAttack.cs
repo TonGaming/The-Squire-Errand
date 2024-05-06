@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerAttack : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     // Get player components
-    Rigidbody2D playerRigidbody;
     Animator playerAnimator;
 
     PlayerMovement playerMovement;
@@ -32,45 +32,50 @@ public class PlayerAttack : MonoBehaviour
     float delayTime = 1.2f;
 
 
+    public bool isAttacking;
+
     // Start is called before the first frame update
     void Start()
     {
-        playerRigidbody = GetComponent<Rigidbody2D>();
 
         playerAudioSource = GetComponent<AudioSource>();
-        playerAnimator = GetComponent<Animator>();
+        playerAnimator = FindAnyObjectByType<PlayerMovement>().GetComponent<Animator>();
 
-        playerDeathDetector = FindObjectOfType<PlayerDeathDetector>();
-        playerMovement = FindObjectOfType<PlayerMovement>();
+        playerDeathDetector = FindAnyObjectByType<PlayerDeathDetector>();
+        playerMovement = FindAnyObjectByType<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveCheck();
+
         PullBow();
 
         
     }
 
-    void MoveCheck()
-    {
-        if (Mathf.Abs(playerRigidbody.velocity.x) >= 1 || Mathf.Abs(playerRigidbody.velocity.y) >= 1)
-        {
-            isMoving = true;
-        }
-        else
-        {
-            isMoving = false;
-        }
 
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        // Set biến bool là true khi người chơi ấn nút tấn công
+        isAttacking = true;
+
+        
     }
 
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        // Set biến bool là false khi người chơi nhả nút tấn công
+        isAttacking = false;
+
+      
+    }
 
     void PullBow()
     {
-        if (Input.GetKey(KeyCode.Mouse0) 
-            && isMoving == false 
+        if (isAttacking
+            //&& Input.GetKey(KeyCode.Mouse0))
+            && !playerMovement.GetIsMoving() 
             && isPullingBow == false
             && (playerMovement.GetClimbableState() == false || playerMovement.GetGroundedState() == true))
         {
@@ -84,7 +89,7 @@ public class PlayerAttack : MonoBehaviour
             playerAnimator.SetBool("isDrawing", true);
 
         }
-        else if (isMoving == true || playerDeathDetector.GetIsAliveState() == false )
+        else if (playerMovement.GetIsMoving() == true || playerDeathDetector.GetIsAliveState() == false )
         {
             isPullingBow = false;
 
