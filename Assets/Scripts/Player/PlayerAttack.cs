@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class PlayerAttack : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class PlayerAttack : MonoBehaviour
 {
     // Get player components
-    Animator playerAnimator;
+
 
     PlayerMovement playerMovement;
     PlayerDeathDetector playerDeathDetector;
@@ -23,7 +23,7 @@ public class PlayerAttack : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     bool isMoving;
     bool isPullingBow = false;
 
-    AudioSource playerAudioSource;
+    AudioSource audioSource;
     [SerializeField] AudioClip arrowDrawingSound;
     [SerializeField] AudioClip arrowWhizzlingSound;
 
@@ -34,47 +34,25 @@ public class PlayerAttack : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     public bool isAttacking;
 
-    // Start is called before the first frame update
     void Start()
     {
         isAttacking = false;
-        playerAudioSource = GetComponent<AudioSource>();
-        playerAnimator = FindAnyObjectByType<PlayerMovement>().GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+
 
         playerDeathDetector = FindAnyObjectByType<PlayerDeathDetector>();
 
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+     
+    public void PullBow()
     {
-
-        PullBow();
-
-        
-    }
+        Debug.Log("Hhihihihihi PULL BOW ACTIVATED");
 
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        // Set biến bool là true khi người chơi ấn nút tấn công
-        isAttacking = true;
-
-        
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        // Set biến bool là false khi người chơi nhả nút tấn công
-        isAttacking = false;
-
-        
-    }
-
-    void PullBow()
-    {
-        if (isAttacking
-            //&& !(FindAnyObjectByType<PlayerMovement>().GetIsMoving()) 
+        if (!(FindAnyObjectByType<PlayerMovement>().GetIsMoving())
             && isPullingBow == false
             && (playerMovement.GetClimbableState() == false || playerMovement.GetGroundedState() == true))
         {
@@ -84,20 +62,20 @@ public class PlayerAttack : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             Invoke("ShootArrow", delayTime); // bắn tên sau tầm .8s chạy animation
             Invoke("GoBackToIdling", delayTime + 0.2f); // sau khi mũi tên xuất hiện thì về lại chế độ bthg
 
-            playerAudioSource.PlayOneShot(arrowDrawingSound, volume);
+            audioSource.PlayOneShot(arrowDrawingSound, volume);
 
             FindAnyObjectByType<PlayerMovement>().GetComponent<Animator>().SetBool("isDrawing", true);
 
         }
-        else if (!isAttacking 
-            || FindAnyObjectByType<PlayerMovement>().GetIsMoving() == true 
-            || playerDeathDetector.GetIsAliveState() == false )
+        else if (
+            FindAnyObjectByType<PlayerMovement>().GetIsMoving() == true
+            || playerDeathDetector.GetIsAliveState() == false)
         {
             Debug.Log("Is not pulling bow");
 
             isPullingBow = false;
 
-            playerAudioSource.Stop();
+            audioSource.Stop();
 
             FindAnyObjectByType<PlayerMovement>().GetComponent<Animator>().SetBool("isDrawing", false);
         }
@@ -108,7 +86,7 @@ public class PlayerAttack : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         if (isPullingBow && FindAnyObjectByType<PlayerMovement>().GetGroundedState() == true) 
         {
             Instantiate(bullet, myGun.position, transform.rotation); // spawn arrow
-            playerAudioSource.PlayOneShot(arrowWhizzlingSound, volume); // chạy âm thanh xé gió
+            audioSource.PlayOneShot(arrowWhizzlingSound, volume); // chạy âm thanh xé gió
         }
         // nếu chạm thang nhưng k chạm sàn - meaning đang bám thang hoặc đang trèo thang thì huỷ luôn k bắn 
         else if (FindAnyObjectByType<PlayerMovement>().GetClimbableState() == true && playerMovement.GetGroundedState() == false )
