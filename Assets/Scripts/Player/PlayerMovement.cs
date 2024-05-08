@@ -45,6 +45,8 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
 
     bool isMoving = false;
 
+    public float playerY;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +58,8 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
 
 
         playerDeathDetector = FindAnyObjectByType<PlayerDeathDetector>();
+
+        playerY = myRigidbody2D.velocity.y;
     }
 
     // Update is called once per frame
@@ -72,11 +76,21 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         FootstepsSoundPlayer();
         ClimbLadderSoundPlayer();
 
+
+        Debug.Log("Player Velocity: " + myRigidbody2D.velocity);
+
         if (playerDeathDetector.GetIsAliveState())
         {
             Run();
             FlipSprite();
             groundCheck();
+            ClimbLadder();
+
+#if UNITY_ANDROID || UNITY_IOS
+
+
+#endif
+
 
 #if UNITY_STANDALONE || UNITY_WEBPLAYER
             ClimbLadder();
@@ -133,7 +147,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     public void OnJump(int value)
     {
         // Nếu đang chạm vào layer ground VÀ phím cách được ấn -> thì mới nhảy, hoặc đang bám thang và ấn cách thì cũng nhảy đc 
-        if ((isGrounded && value == 1 ) || (isClimbable && value == 1))
+        if ((isGrounded && value == 1) || (isClimbable && value == 1))
         {
             myRigidbody2D.velocity = new Vector2(myRigidbody2D.velocity.x, jumpForce);
             myAnimator.SetTrigger("takeOff");
@@ -167,7 +181,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
 
     }
 
-      
+
     void Run()
     {
         // Tạo Vector lưu hướng di chuyển của ng chơi, gán giá trị X, dựa trên moveInput vào. Giá trị Y thì
@@ -180,17 +194,17 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             // Nếu trị tuyệt đối của vận tốc > Epsi thì chạy animation running
             if (Mathf.Abs(myRigidbody2D.velocity.x) >= Mathf.Epsilon)
             {
-                
+
                 myAnimator.SetBool("isRunning", true);
                 myAnimator.SetBool("isIdling", false);
 
-                
+
             }
             else // còn nếu không(đứng im) thì cho đứng im = cách tắt animation running đi 
             {
                 myAnimator.SetBool("isRunning", false);
                 myAnimator.SetBool("isIdling", true);
-                
+
             }
 
         }
@@ -202,15 +216,15 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
 
     void FootstepsSoundPlayer()
     {
-        if (isGrounded && Mathf.Abs(myRigidbody2D.velocity.x) >= 1 && isWalking == false && playerDeathDetector.GetIsAliveState() )
+        if (isGrounded && Mathf.Abs(myRigidbody2D.velocity.x) >= 1 && isWalking == false && playerDeathDetector.GetIsAliveState())
         {
             isWalking = true;
             FootstepsSounds.Play();
 
         }
-        else if (!isGrounded 
-            || !(Mathf.Abs(myRigidbody2D.velocity.x) >= 1) 
-            
+        else if (!isGrounded
+            || !(Mathf.Abs(myRigidbody2D.velocity.x) >= 1)
+
             || playerDeathDetector.GetIsAliveState() == false)
         {
             FootstepsSounds.Stop();
@@ -266,9 +280,10 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
 #endif
 
 #if (UNITY_ANDROID || UNITY_IOS)
-    
-    public void ClimbLadder(Vector2 climbingInput)
+
+    public void ClimbLadder()
     {
+
         if (myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ladder")))
         {
             // báo xem có climb-able hay k
@@ -278,9 +293,10 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             myRigidbody2D.gravityScale = 0;
 
             // lấy giá trị truyền vào và nhân với climbSpeed
-            climbingInput = new Vector2(myRigidbody2D.velocity.x, moveInput.y * climbSpeed);
+            Vector2 climbingInput = new Vector2(myRigidbody2D.velocity.x, moveInput.y * climbSpeed);
 
             myRigidbody2D.velocity = climbingInput;
+
 
         }
         else if (!myCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ladder")))
@@ -290,9 +306,19 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             myAnimator.SetBool("isClimbing", false);
             myAnimator.SetBool("isHanging", false);
             myRigidbody2D.gravityScale = baseGravity;
-        }
-        else { return; }
 
+            Debug.Log("Đã rời thang");
+
+        }
+
+
+
+        CheckLadderAnim();
+    }
+
+
+    void CheckLadderAnim()
+    {
         // Ladder Animation
         // nếu chạm thang k chạm sàn và di chuyển trên trục Y thì chạy animation đang trèo
         if (isClimbable && (isGrounded || !isGrounded) && Mathf.Abs(myRigidbody2D.velocity.y) >= Mathf.Epsilon)
@@ -307,27 +333,18 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             myAnimator.SetBool("isHanging", true);
             myAnimator.SetBool("isClimbing", false);
         }
-        else { return; }
-
     }
-
-
 
 #endif
     void ClimbLadderSoundPlayer()
     {
-        if (isClimbable && Mathf.Abs(myRigidbody2D.velocity.y) >= Mathf.Epsilon
-            
-            && isClimbing == false)
+        if (isClimbable && Mathf.Abs(myRigidbody2D.velocity.y) > Mathf.Epsilon)
         {
             isClimbing = true;
             ClimbingSounds.Play();
 
         }
-        else if (!isClimbable || !(Mathf.Abs(myRigidbody2D.velocity.y) >= Mathf.Epsilon) 
-            || playerDeathDetector.GetIsAliveState() == false 
-
-            )
+        else if (!isClimbable && (Mathf.Abs(myRigidbody2D.velocity.y) < Mathf.Epsilon))
         {
             isClimbing = false;
             ClimbingSounds.Stop();
@@ -335,7 +352,7 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         }
     }
 
-    
+
 
 
 
@@ -385,5 +402,8 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         return isMoving;
     }
 
-    
+    public float GetClimbSpeed()
+    {
+        return climbSpeed;
+    }
 }

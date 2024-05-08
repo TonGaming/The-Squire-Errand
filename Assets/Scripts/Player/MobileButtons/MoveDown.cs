@@ -5,35 +5,20 @@ using UnityEngine.EventSystems;
 
 public class MoveDown : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    Vector2 MoveDownValue = new Vector2(0, -1);
-    Vector2 NotMovingValue = new Vector2(0, 0);
-
-    PlayerMovement playerMovement;
-
-    // Start is called before the first frame update
-    void Awake()
-    {
-        //playerMovement = FindAnyObjectByType<PlayerMovement>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    Vector2 MoveDownValue = new Vector2(0,-1);
+    Vector2 NotMovingValue = new Vector2(0,0);
 
     public void OnPointerDown(PointerEventData eventData)
     {
 
-        FindAnyObjectByType<PlayerMovement>().ClimbLadder(MoveDownValue);
+        FindAnyObjectByType<PlayerMovement>().OnMove(MoveDownValue);
 
 
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        FindAnyObjectByType<PlayerMovement>().ClimbLadder(NotMovingValue);
+        FindAnyObjectByType<PlayerMovement>().OnMove(NotMovingValue);
 
 
     }

@@ -40,7 +40,7 @@ public class PlayerAttack : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
 
-        playerDeathDetector = FindAnyObjectByType<PlayerDeathDetector>();
+
 
     }
 
@@ -52,15 +52,15 @@ public class PlayerAttack : MonoBehaviour
         Debug.Log("Hhihihihihi PULL BOW ACTIVATED");
 
 
-        if (!(FindAnyObjectByType<PlayerMovement>().GetIsMoving())
-            && isPullingBow == false
+        if (//!(FindAnyObjectByType<PlayerMovement>().GetIsMoving())
+             isPullingBow == false
             && (playerMovement.GetClimbableState() == false || playerMovement.GetGroundedState() == true))
         {
             Debug.Log("Is pulling bow");
             isPullingBow = true;
 
-            Invoke("ShootArrow", delayTime); // bắn tên sau tầm .8s chạy animation
-            Invoke("GoBackToIdling", delayTime + 0.2f); // sau khi mũi tên xuất hiện thì về lại chế độ bthg
+            StartCoroutine(nameof(ShootArrow), delayTime); // bắn tên sau tầm .8s chạy animation
+            StartCoroutine(nameof(GoBackToIdling), delayTime + 0.2f); // sau khi mũi tên xuất hiện thì về lại chế độ bthg
 
             audioSource.PlayOneShot(arrowDrawingSound, volume);
 
@@ -69,7 +69,7 @@ public class PlayerAttack : MonoBehaviour
         }
         else if (
             FindAnyObjectByType<PlayerMovement>().GetIsMoving() == true
-            || playerDeathDetector.GetIsAliveState() == false)
+            || FindAnyObjectByType<PlayerDeathDetector>().GetIsAliveState() == false)
         {
             Debug.Log("Is not pulling bow");
 
@@ -81,23 +81,22 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    void ShootArrow()
+    IEnumerator ShootArrow(float delay)
     {
+        yield return new WaitForSeconds(delay);
         if (isPullingBow && FindAnyObjectByType<PlayerMovement>().GetGroundedState() == true) 
         {
             Instantiate(bullet, myGun.position, transform.rotation); // spawn arrow
             audioSource.PlayOneShot(arrowWhizzlingSound, volume); // chạy âm thanh xé gió
         }
-        // nếu chạm thang nhưng k chạm sàn - meaning đang bám thang hoặc đang trèo thang thì huỷ luôn k bắn 
-        else if (FindAnyObjectByType<PlayerMovement>().GetClimbableState() == true && playerMovement.GetGroundedState() == false )
-        {
-            return;
-        }
-        else { return; }
+        
+        
     }
 
-    void GoBackToIdling()
+    IEnumerator GoBackToIdling(float delay)
     {
+        yield return new WaitForSeconds(delay); 
+
         isPullingBow = false;
         FindAnyObjectByType<PlayerMovement>().GetComponent<Animator>().SetBool("isIdling", true);
         FindAnyObjectByType<PlayerMovement>().GetComponent<Animator>().SetBool("isDrawing", false);
