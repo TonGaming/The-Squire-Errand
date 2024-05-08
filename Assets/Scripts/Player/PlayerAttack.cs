@@ -52,8 +52,8 @@ public class PlayerAttack : MonoBehaviour
         Debug.Log("Hhihihihihi PULL BOW ACTIVATED");
 
 
-        if (//!(FindAnyObjectByType<PlayerMovement>().GetIsMoving())
-             isPullingBow == false
+        if (!(FindAnyObjectByType<PlayerMovement>().GetIsMoving())
+             && isPullingBow == false
             && (playerMovement.GetClimbableState() == false || playerMovement.GetGroundedState() == true))
         {
             Debug.Log("Is pulling bow");
