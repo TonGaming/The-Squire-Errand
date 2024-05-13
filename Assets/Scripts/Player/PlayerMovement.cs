@@ -65,6 +65,12 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     // Update is called once per frame
     void Update()
     {
+        if(myRigidbody2D.velocity.y <= Mathf.Epsilon)
+        {
+            Debug.Log("Is not moving vertically");
+        }
+
+
         /**
          * Note to self:
          * Phải tạo biến isAlive để check, 
@@ -75,9 +81,6 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
 
         FootstepsSoundPlayer();
         ClimbLadderSoundPlayer();
-
-
-        Debug.Log("Player Velocity: " + myRigidbody2D.velocity);
 
         if (playerDeathDetector.GetIsAliveState())
         {
@@ -220,7 +223,6 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
         {
             isWalking = true;
             FootstepsSounds.Play();
-
         }
         else if (!isGrounded
             || !(Mathf.Abs(myRigidbody2D.velocity.x) >= 1)
@@ -338,18 +340,29 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
 #endif
     void ClimbLadderSoundPlayer()
     {
-        if (isClimbable && Mathf.Abs(myRigidbody2D.velocity.y) > Mathf.Epsilon)
+        if (isClimbable && Mathf.Abs(myRigidbody2D.velocity.y) > Mathf.Epsilon && !isClimbing)
         {
-            isClimbing = true;
             ClimbingSounds.Play();
+            isClimbing = true;
+            Debug.Log("Is Climbing Ladder");
 
         }
-        else if (!isClimbable && (Mathf.Abs(myRigidbody2D.velocity.y) < Mathf.Epsilon))
+        else if (isClimbable && (Mathf.Abs(myRigidbody2D.velocity.y) <= Mathf.Epsilon) && isClimbing)
         {
+
+            ClimbingSounds.Pause();
             isClimbing = false;
-            ClimbingSounds.Stop();
+
+            Debug.Log("Is NOT Climbing Ladder");
 
         }
+        //else
+        //{
+        //    Debug.Log("Is NOTTTTT Climbing Ladder");
+
+        //    ClimbingSounds.Stop();
+        //    isClimbing = false;
+        //}
     }
 
 
