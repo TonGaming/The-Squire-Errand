@@ -21,7 +21,7 @@ public class PlayerAttack : MonoBehaviour
 
     // check di chuyển và kéo cung
     bool isMoving;
-    bool isPullingBow = false;
+    public bool isPullingBow = false;
 
     AudioSource audioSource;
     [SerializeField] AudioClip arrowDrawingSound;
@@ -46,15 +46,15 @@ public class PlayerAttack : MonoBehaviour
 
 
 
-     
+
     public void PullBow()
     {
         Debug.Log("Hhihihihihi PULL BOW ACTIVATED");
 
 
         if (!(FindAnyObjectByType<PlayerMovement>().GetIsMoving())
-             && isPullingBow == false
-            && (playerMovement.GetClimbableState() == false || playerMovement.GetGroundedState() == true))
+            && isPullingBow == false
+            && (FindAnyObjectByType<PlayerMovement>().GetClimbableState() == false || FindAnyObjectByType<PlayerMovement>().GetGroundedState() == true))
         {
             Debug.Log("Is pulling bow");
             isPullingBow = true;
@@ -84,18 +84,18 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator ShootArrow(float delay)
     {
         yield return new WaitForSeconds(delay);
-        if (isPullingBow && FindAnyObjectByType<PlayerMovement>().GetGroundedState() == true) 
+        if (isPullingBow && FindAnyObjectByType<PlayerMovement>().GetGroundedState() == true)
         {
             Instantiate(bullet, myGun.position, transform.rotation); // spawn arrow
             audioSource.PlayOneShot(arrowWhizzlingSound, volume); // chạy âm thanh xé gió
         }
-        
-        
+
+
     }
 
     IEnumerator GoBackToIdling(float delay)
     {
-        yield return new WaitForSeconds(delay); 
+        yield return new WaitForSeconds(delay);
 
         isPullingBow = false;
         FindAnyObjectByType<PlayerMovement>().GetComponent<Animator>().SetBool("isIdling", true);

@@ -3,8 +3,6 @@ using UnityEngine.EventSystems;
 
 public class OnAttack : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField] PlayerAttack playerAttack;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -21,7 +19,7 @@ public class OnAttack : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData pointerEvent)
     {
-        playerAttack.PullBow();
+        FindAnyObjectByType<PlayerAttack>().PullBow();
     }
 
     public void OnPointerUp(PointerEventData pointerEvent)

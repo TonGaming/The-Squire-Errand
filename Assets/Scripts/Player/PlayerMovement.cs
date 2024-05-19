@@ -65,11 +65,6 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
     // Update is called once per frame
     void Update()
     {
-        if(myRigidbody2D.velocity.y <= Mathf.Epsilon)
-        {
-            Debug.Log("Is not moving vertically");
-        }
-
 
         /**
          * Note to self:
@@ -308,9 +303,6 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
             myAnimator.SetBool("isClimbing", false);
             myAnimator.SetBool("isHanging", false);
             myRigidbody2D.gravityScale = baseGravity;
-
-            Debug.Log("Đã rời thang");
-
         }
 
 
@@ -355,6 +347,10 @@ public class PlayerMovement : MonoBehaviour // Cẩn thận tên class và tên 
 
             Debug.Log("Is NOT Climbing Ladder");
 
+        }
+        else if ( !isClimbable)
+        {
+            ClimbingSounds.Stop();
         }
         //else
         //{
