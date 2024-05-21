@@ -28,7 +28,11 @@ public class PauseGame : MonoBehaviour
     {
         if (!isPause)
         {
-            ambientSound.Pause();
+            if (ambientSound != null)
+            {
+                ambientSound.Pause();
+
+            }
             GetComponent<Image>().sprite = continueUI;
 
             Time.timeScale = 0;
@@ -37,7 +41,11 @@ public class PauseGame : MonoBehaviour
         }
         else
         {
-            ambientSound.Play();
+            if (ambientSound != null)
+            {
+                ambientSound.Play();
+
+            }
 
             GetComponent<Image>().sprite = pauseUI;
 
