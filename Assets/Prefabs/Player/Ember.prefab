@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3413546477762374542}
   - component: {fileID: 6255532009062243166}
   - component: {fileID: 6330318200546482195}
+  - component: {fileID: 569543611309203645}
   - component: {fileID: 385468339481505968}
   - component: {fileID: 2499262167025614396}
   - component: {fileID: 2928457798981290784}
@@ -220,7 +221,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5166253313191871775}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -243,6 +244,24 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &569543611309203645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5166253313191871775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cc40a6ea9a12fa4f889d5a4f24c65da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
+  myGun: {fileID: 925105723516224042}
+  isPullingBow: 0
+  arrowDrawingSound: {fileID: 8300000, guid: e36225bd32878384a972d4fefa338a30, type: 3}
+  arrowWhizzlingSound: {fileID: 8300000, guid: f01434b55e77d0d45bf8882676de45e4, type: 3}
+  isAttacking: 0
 --- !u!114 &385468339481505968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +282,7 @@ MonoBehaviour:
   ClimbingSounds: {fileID: 0}
   BouncingSounds: {fileID: 0}
   JumpingSounds: {fileID: 0}
+  playerY: 0
 --- !u!114 &2499262167025614396
 MonoBehaviour:
   m_ObjectHideFlags: 0
